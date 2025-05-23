@@ -1,10 +1,18 @@
+// Libraries
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
-// Let's rip the band-aid off, shall we?
+// Functions
+#include "heap.c"
+#include "printArray.c"
+#include "quicksort.c"
+#include "swap.c"
 
-// Princípios de divisão e conquista, recursividade e ordenação.
+// Main function
+int main () {
+    
 
-// Busca quicksort ou heapsort
+    return 0;
+}
 
