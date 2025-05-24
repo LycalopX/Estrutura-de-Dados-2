@@ -1,0 +1,44 @@
+[
+{
+  "directory": "/Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/build",
+  "command": "/usr/bin/clang   -g -std=gnu99 -arch arm64 -o CMakeFiles/ex6.dir/heap.c.o -c /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/heap.c",
+  "file": "/Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/heap.c",
+  "output": "CMakeFiles/ex6.dir/heap.c.o"
+},
+{
+  "directory": "/Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/build",
+  "command": "/usr/bin/clang   -g -std=gnu99 -arch arm64 -o CMakeFiles/ex6.dir/main.c.o -c /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/main.c",
+  "file": "/Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/main.c",
+  "output": "CMakeFiles/ex6.dir/main.c.o"
+},
+{
+  "directory": "/Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/build",
+  "command": "/usr/bin/clang   -g -std=gnu99 -arch arm64 -o CMakeFiles/ex6.dir/moveDisk.c.o -c /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/moveDisk.c",
+  "file": "/Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/moveDisk.c",
+  "output": "CMakeFiles/ex6.dir/moveDisk.c.o"
+},
+{
+  "directory": "/Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/build",
+  "command": "/usr/bin/clang   -g -std=gnu99 -arch arm64 -o CMakeFiles/ex6.dir/printArray.c.o -c /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/printArray.c",
+  "file": "/Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/printArray.c",
+  "output": "CMakeFiles/ex6.dir/printArray.c.o"
+},
+{
+  "directory": "/Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/build",
+  "command": "/usr/bin/clang   -g -std=gnu99 -arch arm64 -o CMakeFiles/ex6.dir/quicksort.c.o -c /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/quicksort.c",
+  "file": "/Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/quicksort.c",
+  "output": "CMakeFiles/ex6.dir/quicksort.c.o"
+},
+{
+  "directory": "/Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/build",
+  "command": "/usr/bin/clang   -g -std=gnu99 -arch arm64 -o CMakeFiles/ex6.dir/solve.c.o -c /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/solve.c",
+  "file": "/Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/solve.c",
+  "output": "CMakeFiles/ex6.dir/solve.c.o"
+},
+{
+  "directory": "/Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/build",
+  "command": "/usr/bin/clang   -g -std=gnu99 -arch arm64 -o CMakeFiles/ex6.dir/swap.c.o -c /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/swap.c",
+  "file": "/Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/swap.c",
+  "output": "CMakeFiles/ex6.dir/swap.c.o"
+}
+]

@@ -1,0 +1,15 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "ex6",
+            "type": "lldb",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/ex6",
+            "args": [],
+            "cwd": "${workspaceFolder}",
+            "internalConsoleOptions": "openOnSessionStart",
+            "console": "integratedTerminal"
+        }
+    ]
+}

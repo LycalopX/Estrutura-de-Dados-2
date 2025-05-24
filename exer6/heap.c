@@ -19,7 +19,7 @@ Parent is stored at index floor((i-1)/2)
 
 void heapify(int arr[], int n, int i)
 {
-    int largest = i; // Inicializar o maior como raiz
+    int smallest = i; // Inicializar o menor como raiz
 
     // Para compreender seus "galhos"
     int left = 2 * i + 1;  // Esquerda = 2*i + 1
@@ -27,21 +27,21 @@ void heapify(int arr[], int n, int i)
 
     // n é usado como limite para evitar acessar fora do array
 
-    // Se o filho esquerdo for maior que a raiz
-    if (left < n && arr[left] > arr[largest])
-        largest = left;
+    // Se o filho esquerdo for menor que a raiz
+    if (left < n && arr[left] < arr[smallest])
+        smallest = left;
 
-    // Se o filho direito for maior que o maior até agora
-    if (right < n && arr[right] > arr[largest])
-        largest = right;
+    // Se o filho direito for menor que o menor até agora
+    if (right < n && arr[right] < arr[smallest])
+        smallest = right;
 
-    // Se o maior não for a raiz
-    if (largest != i)
+    // Se o menor não for a raiz
+    if (smallest != i)
     {
-        swap(&arr[i], &arr[largest]); // Trocar a raiz com o maior
+        swap(&arr[i], &arr[smallest]); // Trocar a raiz com o maior
 
         // Recursivamente heapify a subárvore afetada
-        heapify(arr, n, largest);
+        heapify(arr, n, smallest);
     }
 }
 
