@@ -1,4 +1,4 @@
-CMakeFiles/ex6.dir/printArray.c.o: \
+CMakeFiles/main.dir/printArray.c.o: \
   /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/printArray.c \
   /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/printArray.h \
   /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/hanoi.h \

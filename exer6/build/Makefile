@@ -117,24 +117,24 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named ex6
+# Target rules for targets named main
 
 # Build rule for target.
-ex6: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 ex6
-.PHONY : ex6
+main: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 main
+.PHONY : main
 
 # fast build rule for target.
-ex6/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ex6.dir/build.make CMakeFiles/ex6.dir/build
-.PHONY : ex6/fast
+main/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/build
+.PHONY : main/fast
 
 hanoi.o: hanoi.c.o
 .PHONY : hanoi.o
 
 # target to build an object file
 hanoi.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ex6.dir/build.make CMakeFiles/ex6.dir/hanoi.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/hanoi.c.o
 .PHONY : hanoi.c.o
 
 hanoi.i: hanoi.c.i
@@ -142,7 +142,7 @@ hanoi.i: hanoi.c.i
 
 # target to preprocess a source file
 hanoi.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ex6.dir/build.make CMakeFiles/ex6.dir/hanoi.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/hanoi.c.i
 .PHONY : hanoi.c.i
 
 hanoi.s: hanoi.c.s
@@ -150,7 +150,7 @@ hanoi.s: hanoi.c.s
 
 # target to generate assembly for a file
 hanoi.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ex6.dir/build.make CMakeFiles/ex6.dir/hanoi.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/hanoi.c.s
 .PHONY : hanoi.c.s
 
 heap.o: heap.c.o
@@ -158,7 +158,7 @@ heap.o: heap.c.o
 
 # target to build an object file
 heap.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ex6.dir/build.make CMakeFiles/ex6.dir/heap.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/heap.c.o
 .PHONY : heap.c.o
 
 heap.i: heap.c.i
@@ -166,7 +166,7 @@ heap.i: heap.c.i
 
 # target to preprocess a source file
 heap.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ex6.dir/build.make CMakeFiles/ex6.dir/heap.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/heap.c.i
 .PHONY : heap.c.i
 
 heap.s: heap.c.s
@@ -174,7 +174,7 @@ heap.s: heap.c.s
 
 # target to generate assembly for a file
 heap.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ex6.dir/build.make CMakeFiles/ex6.dir/heap.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/heap.c.s
 .PHONY : heap.c.s
 
 main.o: main.c.o
@@ -182,7 +182,7 @@ main.o: main.c.o
 
 # target to build an object file
 main.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ex6.dir/build.make CMakeFiles/ex6.dir/main.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/main.c.o
 .PHONY : main.c.o
 
 main.i: main.c.i
@@ -190,7 +190,7 @@ main.i: main.c.i
 
 # target to preprocess a source file
 main.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ex6.dir/build.make CMakeFiles/ex6.dir/main.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/main.c.i
 .PHONY : main.c.i
 
 main.s: main.c.s
@@ -198,7 +198,7 @@ main.s: main.c.s
 
 # target to generate assembly for a file
 main.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ex6.dir/build.make CMakeFiles/ex6.dir/main.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/main.c.s
 .PHONY : main.c.s
 
 moveDisk.o: moveDisk.c.o
@@ -206,7 +206,7 @@ moveDisk.o: moveDisk.c.o
 
 # target to build an object file
 moveDisk.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ex6.dir/build.make CMakeFiles/ex6.dir/moveDisk.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/moveDisk.c.o
 .PHONY : moveDisk.c.o
 
 moveDisk.i: moveDisk.c.i
@@ -214,7 +214,7 @@ moveDisk.i: moveDisk.c.i
 
 # target to preprocess a source file
 moveDisk.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ex6.dir/build.make CMakeFiles/ex6.dir/moveDisk.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/moveDisk.c.i
 .PHONY : moveDisk.c.i
 
 moveDisk.s: moveDisk.c.s
@@ -222,7 +222,7 @@ moveDisk.s: moveDisk.c.s
 
 # target to generate assembly for a file
 moveDisk.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ex6.dir/build.make CMakeFiles/ex6.dir/moveDisk.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/moveDisk.c.s
 .PHONY : moveDisk.c.s
 
 printArray.o: printArray.c.o
@@ -230,7 +230,7 @@ printArray.o: printArray.c.o
 
 # target to build an object file
 printArray.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ex6.dir/build.make CMakeFiles/ex6.dir/printArray.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/printArray.c.o
 .PHONY : printArray.c.o
 
 printArray.i: printArray.c.i
@@ -238,7 +238,7 @@ printArray.i: printArray.c.i
 
 # target to preprocess a source file
 printArray.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ex6.dir/build.make CMakeFiles/ex6.dir/printArray.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/printArray.c.i
 .PHONY : printArray.c.i
 
 printArray.s: printArray.c.s
@@ -246,7 +246,7 @@ printArray.s: printArray.c.s
 
 # target to generate assembly for a file
 printArray.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ex6.dir/build.make CMakeFiles/ex6.dir/printArray.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/printArray.c.s
 .PHONY : printArray.c.s
 
 quicksort.o: quicksort.c.o
@@ -254,7 +254,7 @@ quicksort.o: quicksort.c.o
 
 # target to build an object file
 quicksort.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ex6.dir/build.make CMakeFiles/ex6.dir/quicksort.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/quicksort.c.o
 .PHONY : quicksort.c.o
 
 quicksort.i: quicksort.c.i
@@ -262,7 +262,7 @@ quicksort.i: quicksort.c.i
 
 # target to preprocess a source file
 quicksort.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ex6.dir/build.make CMakeFiles/ex6.dir/quicksort.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/quicksort.c.i
 .PHONY : quicksort.c.i
 
 quicksort.s: quicksort.c.s
@@ -270,7 +270,7 @@ quicksort.s: quicksort.c.s
 
 # target to generate assembly for a file
 quicksort.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ex6.dir/build.make CMakeFiles/ex6.dir/quicksort.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/quicksort.c.s
 .PHONY : quicksort.c.s
 
 readInputs.o: readInputs.c.o
@@ -278,7 +278,7 @@ readInputs.o: readInputs.c.o
 
 # target to build an object file
 readInputs.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ex6.dir/build.make CMakeFiles/ex6.dir/readInputs.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/readInputs.c.o
 .PHONY : readInputs.c.o
 
 readInputs.i: readInputs.c.i
@@ -286,7 +286,7 @@ readInputs.i: readInputs.c.i
 
 # target to preprocess a source file
 readInputs.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ex6.dir/build.make CMakeFiles/ex6.dir/readInputs.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/readInputs.c.i
 .PHONY : readInputs.c.i
 
 readInputs.s: readInputs.c.s
@@ -294,7 +294,7 @@ readInputs.s: readInputs.c.s
 
 # target to generate assembly for a file
 readInputs.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ex6.dir/build.make CMakeFiles/ex6.dir/readInputs.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/readInputs.c.s
 .PHONY : readInputs.c.s
 
 swap.o: swap.c.o
@@ -302,7 +302,7 @@ swap.o: swap.c.o
 
 # target to build an object file
 swap.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ex6.dir/build.make CMakeFiles/ex6.dir/swap.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/swap.c.o
 .PHONY : swap.c.o
 
 swap.i: swap.c.i
@@ -310,7 +310,7 @@ swap.i: swap.c.i
 
 # target to preprocess a source file
 swap.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ex6.dir/build.make CMakeFiles/ex6.dir/swap.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/swap.c.i
 .PHONY : swap.c.i
 
 swap.s: swap.c.s
@@ -318,7 +318,7 @@ swap.s: swap.c.s
 
 # target to generate assembly for a file
 swap.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ex6.dir/build.make CMakeFiles/ex6.dir/swap.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/swap.c.s
 .PHONY : swap.c.s
 
 # Help Target
@@ -329,7 +329,7 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... ex6"
+	@echo "... main"
 	@echo "... hanoi.o"
 	@echo "... hanoi.i"
 	@echo "... hanoi.s"

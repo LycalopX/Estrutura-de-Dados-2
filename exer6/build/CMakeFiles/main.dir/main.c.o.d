@@ -1,5 +1,5 @@
-CMakeFiles/ex6.dir/moveDisk.c.o: \
-  /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/moveDisk.c \
+CMakeFiles/main.dir/main.c.o: \
+  /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/main.c \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/stdio.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/_stdio.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sys/cdefs.h \
@@ -84,5 +84,9 @@ CMakeFiles/ex6.dir/moveDisk.c.o: \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/strings.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_strings.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_string.h \
-  /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/moveDisk.h \
-  /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/hanoi.h
+  /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/heap.h \
+  /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/printArray.h \
+  /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/hanoi.h \
+  /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/quicksort.h \
+  /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/swap.h \
+  /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/readInputs.h

@@ -1,1 +1,0 @@
-/usr/bin/cc -g -arch arm64 -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/ex6.dir/hanoi.c.o CMakeFiles/ex6.dir/heap.c.o CMakeFiles/ex6.dir/main.c.o CMakeFiles/ex6.dir/moveDisk.c.o CMakeFiles/ex6.dir/printArray.c.o CMakeFiles/ex6.dir/quicksort.c.o CMakeFiles/ex6.dir/readInputs.c.o CMakeFiles/ex6.dir/swap.c.o -o ex6

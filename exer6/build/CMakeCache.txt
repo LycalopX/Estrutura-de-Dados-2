@@ -128,7 +128,7 @@ CMAKE_PROJECT_DESCRIPTION:STATIC=
 CMAKE_PROJECT_HOMEPAGE_URL:STATIC=
 
 //Value Computed by CMake
-CMAKE_PROJECT_NAME:STATIC=ex6
+CMAKE_PROJECT_NAME:STATIC=main
 
 //Path to a program.
 CMAKE_RANLIB:FILEPATH=/usr/bin/ranlib
@@ -196,13 +196,13 @@ CMAKE_TAPI:FILEPATH=/Library/Developer/CommandLineTools/usr/bin/tapi
 CMAKE_VERBOSE_MAKEFILE:BOOL=FALSE
 
 //Value Computed by CMake
-ex6_BINARY_DIR:STATIC=/Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/build
+main_BINARY_DIR:STATIC=/Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/build
 
 //Value Computed by CMake
-ex6_IS_TOP_LEVEL:STATIC=ON
+main_IS_TOP_LEVEL:STATIC=ON
 
 //Value Computed by CMake
-ex6_SOURCE_DIR:STATIC=/Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6
+main_SOURCE_DIR:STATIC=/Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6
 
 
 ########################
