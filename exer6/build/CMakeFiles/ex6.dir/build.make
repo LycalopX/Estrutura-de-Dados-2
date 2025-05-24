@@ -76,113 +76,113 @@ CMakeFiles/ex6.dir/hanoi.c.o: CMakeFiles/ex6.dir/flags.make
 CMakeFiles/ex6.dir/hanoi.c.o: /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/hanoi.c
 CMakeFiles/ex6.dir/hanoi.c.o: CMakeFiles/ex6.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/ex6.dir/hanoi.c.o"
-	/usr/bin/clang $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/ex6.dir/hanoi.c.o -MF CMakeFiles/ex6.dir/hanoi.c.o.d -o CMakeFiles/ex6.dir/hanoi.c.o -c /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/hanoi.c
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/ex6.dir/hanoi.c.o -MF CMakeFiles/ex6.dir/hanoi.c.o.d -o CMakeFiles/ex6.dir/hanoi.c.o -c /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/hanoi.c
 
 CMakeFiles/ex6.dir/hanoi.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/ex6.dir/hanoi.c.i"
-	/usr/bin/clang $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/hanoi.c > CMakeFiles/ex6.dir/hanoi.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/hanoi.c > CMakeFiles/ex6.dir/hanoi.c.i
 
 CMakeFiles/ex6.dir/hanoi.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/ex6.dir/hanoi.c.s"
-	/usr/bin/clang $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/hanoi.c -o CMakeFiles/ex6.dir/hanoi.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/hanoi.c -o CMakeFiles/ex6.dir/hanoi.c.s
 
 CMakeFiles/ex6.dir/heap.c.o: CMakeFiles/ex6.dir/flags.make
 CMakeFiles/ex6.dir/heap.c.o: /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/heap.c
 CMakeFiles/ex6.dir/heap.c.o: CMakeFiles/ex6.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/ex6.dir/heap.c.o"
-	/usr/bin/clang $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/ex6.dir/heap.c.o -MF CMakeFiles/ex6.dir/heap.c.o.d -o CMakeFiles/ex6.dir/heap.c.o -c /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/heap.c
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/ex6.dir/heap.c.o -MF CMakeFiles/ex6.dir/heap.c.o.d -o CMakeFiles/ex6.dir/heap.c.o -c /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/heap.c
 
 CMakeFiles/ex6.dir/heap.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/ex6.dir/heap.c.i"
-	/usr/bin/clang $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/heap.c > CMakeFiles/ex6.dir/heap.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/heap.c > CMakeFiles/ex6.dir/heap.c.i
 
 CMakeFiles/ex6.dir/heap.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/ex6.dir/heap.c.s"
-	/usr/bin/clang $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/heap.c -o CMakeFiles/ex6.dir/heap.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/heap.c -o CMakeFiles/ex6.dir/heap.c.s
 
 CMakeFiles/ex6.dir/main.c.o: CMakeFiles/ex6.dir/flags.make
 CMakeFiles/ex6.dir/main.c.o: /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/main.c
 CMakeFiles/ex6.dir/main.c.o: CMakeFiles/ex6.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/ex6.dir/main.c.o"
-	/usr/bin/clang $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/ex6.dir/main.c.o -MF CMakeFiles/ex6.dir/main.c.o.d -o CMakeFiles/ex6.dir/main.c.o -c /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/main.c
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/ex6.dir/main.c.o -MF CMakeFiles/ex6.dir/main.c.o.d -o CMakeFiles/ex6.dir/main.c.o -c /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/main.c
 
 CMakeFiles/ex6.dir/main.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/ex6.dir/main.c.i"
-	/usr/bin/clang $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/main.c > CMakeFiles/ex6.dir/main.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/main.c > CMakeFiles/ex6.dir/main.c.i
 
 CMakeFiles/ex6.dir/main.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/ex6.dir/main.c.s"
-	/usr/bin/clang $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/main.c -o CMakeFiles/ex6.dir/main.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/main.c -o CMakeFiles/ex6.dir/main.c.s
 
 CMakeFiles/ex6.dir/moveDisk.c.o: CMakeFiles/ex6.dir/flags.make
 CMakeFiles/ex6.dir/moveDisk.c.o: /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/moveDisk.c
 CMakeFiles/ex6.dir/moveDisk.c.o: CMakeFiles/ex6.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/ex6.dir/moveDisk.c.o"
-	/usr/bin/clang $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/ex6.dir/moveDisk.c.o -MF CMakeFiles/ex6.dir/moveDisk.c.o.d -o CMakeFiles/ex6.dir/moveDisk.c.o -c /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/moveDisk.c
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/ex6.dir/moveDisk.c.o -MF CMakeFiles/ex6.dir/moveDisk.c.o.d -o CMakeFiles/ex6.dir/moveDisk.c.o -c /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/moveDisk.c
 
 CMakeFiles/ex6.dir/moveDisk.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/ex6.dir/moveDisk.c.i"
-	/usr/bin/clang $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/moveDisk.c > CMakeFiles/ex6.dir/moveDisk.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/moveDisk.c > CMakeFiles/ex6.dir/moveDisk.c.i
 
 CMakeFiles/ex6.dir/moveDisk.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/ex6.dir/moveDisk.c.s"
-	/usr/bin/clang $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/moveDisk.c -o CMakeFiles/ex6.dir/moveDisk.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/moveDisk.c -o CMakeFiles/ex6.dir/moveDisk.c.s
 
 CMakeFiles/ex6.dir/printArray.c.o: CMakeFiles/ex6.dir/flags.make
 CMakeFiles/ex6.dir/printArray.c.o: /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/printArray.c
 CMakeFiles/ex6.dir/printArray.c.o: CMakeFiles/ex6.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building C object CMakeFiles/ex6.dir/printArray.c.o"
-	/usr/bin/clang $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/ex6.dir/printArray.c.o -MF CMakeFiles/ex6.dir/printArray.c.o.d -o CMakeFiles/ex6.dir/printArray.c.o -c /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/printArray.c
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/ex6.dir/printArray.c.o -MF CMakeFiles/ex6.dir/printArray.c.o.d -o CMakeFiles/ex6.dir/printArray.c.o -c /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/printArray.c
 
 CMakeFiles/ex6.dir/printArray.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/ex6.dir/printArray.c.i"
-	/usr/bin/clang $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/printArray.c > CMakeFiles/ex6.dir/printArray.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/printArray.c > CMakeFiles/ex6.dir/printArray.c.i
 
 CMakeFiles/ex6.dir/printArray.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/ex6.dir/printArray.c.s"
-	/usr/bin/clang $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/printArray.c -o CMakeFiles/ex6.dir/printArray.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/printArray.c -o CMakeFiles/ex6.dir/printArray.c.s
 
 CMakeFiles/ex6.dir/quicksort.c.o: CMakeFiles/ex6.dir/flags.make
 CMakeFiles/ex6.dir/quicksort.c.o: /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/quicksort.c
 CMakeFiles/ex6.dir/quicksort.c.o: CMakeFiles/ex6.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building C object CMakeFiles/ex6.dir/quicksort.c.o"
-	/usr/bin/clang $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/ex6.dir/quicksort.c.o -MF CMakeFiles/ex6.dir/quicksort.c.o.d -o CMakeFiles/ex6.dir/quicksort.c.o -c /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/quicksort.c
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/ex6.dir/quicksort.c.o -MF CMakeFiles/ex6.dir/quicksort.c.o.d -o CMakeFiles/ex6.dir/quicksort.c.o -c /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/quicksort.c
 
 CMakeFiles/ex6.dir/quicksort.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/ex6.dir/quicksort.c.i"
-	/usr/bin/clang $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/quicksort.c > CMakeFiles/ex6.dir/quicksort.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/quicksort.c > CMakeFiles/ex6.dir/quicksort.c.i
 
 CMakeFiles/ex6.dir/quicksort.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/ex6.dir/quicksort.c.s"
-	/usr/bin/clang $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/quicksort.c -o CMakeFiles/ex6.dir/quicksort.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/quicksort.c -o CMakeFiles/ex6.dir/quicksort.c.s
 
 CMakeFiles/ex6.dir/readInputs.c.o: CMakeFiles/ex6.dir/flags.make
 CMakeFiles/ex6.dir/readInputs.c.o: /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/readInputs.c
 CMakeFiles/ex6.dir/readInputs.c.o: CMakeFiles/ex6.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building C object CMakeFiles/ex6.dir/readInputs.c.o"
-	/usr/bin/clang $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/ex6.dir/readInputs.c.o -MF CMakeFiles/ex6.dir/readInputs.c.o.d -o CMakeFiles/ex6.dir/readInputs.c.o -c /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/readInputs.c
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/ex6.dir/readInputs.c.o -MF CMakeFiles/ex6.dir/readInputs.c.o.d -o CMakeFiles/ex6.dir/readInputs.c.o -c /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/readInputs.c
 
 CMakeFiles/ex6.dir/readInputs.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/ex6.dir/readInputs.c.i"
-	/usr/bin/clang $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/readInputs.c > CMakeFiles/ex6.dir/readInputs.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/readInputs.c > CMakeFiles/ex6.dir/readInputs.c.i
 
 CMakeFiles/ex6.dir/readInputs.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/ex6.dir/readInputs.c.s"
-	/usr/bin/clang $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/readInputs.c -o CMakeFiles/ex6.dir/readInputs.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/readInputs.c -o CMakeFiles/ex6.dir/readInputs.c.s
 
 CMakeFiles/ex6.dir/swap.c.o: CMakeFiles/ex6.dir/flags.make
 CMakeFiles/ex6.dir/swap.c.o: /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/swap.c
 CMakeFiles/ex6.dir/swap.c.o: CMakeFiles/ex6.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building C object CMakeFiles/ex6.dir/swap.c.o"
-	/usr/bin/clang $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/ex6.dir/swap.c.o -MF CMakeFiles/ex6.dir/swap.c.o.d -o CMakeFiles/ex6.dir/swap.c.o -c /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/swap.c
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/ex6.dir/swap.c.o -MF CMakeFiles/ex6.dir/swap.c.o.d -o CMakeFiles/ex6.dir/swap.c.o -c /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/swap.c
 
 CMakeFiles/ex6.dir/swap.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/ex6.dir/swap.c.i"
-	/usr/bin/clang $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/swap.c > CMakeFiles/ex6.dir/swap.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/swap.c > CMakeFiles/ex6.dir/swap.c.i
 
 CMakeFiles/ex6.dir/swap.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/ex6.dir/swap.c.s"
-	/usr/bin/clang $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/swap.c -o CMakeFiles/ex6.dir/swap.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/swap.c -o CMakeFiles/ex6.dir/swap.c.s
 
 # Object files for target ex6
 ex6_OBJECTS = \
