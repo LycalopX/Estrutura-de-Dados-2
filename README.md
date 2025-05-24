@@ -53,7 +53,7 @@ Verifica se duas palavras são anagramas:
 - Não diferencia maiúsculas/minúsculas.
 - Exibe: `Palavra 1: x – Palavra 2: y – Anagrama? sim/não`
 
-### 6. 🏗️ HanoiSort – Torres de Hanói com Pesos
+### 6. 🧮 HanoiSort – Torres de Hanói com Pesos
 Versão estendida das Torres de Hanói:
 
 - Ordena os discos por **quicksort** ou **heapsort** (recursivo).
