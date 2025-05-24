@@ -86,6 +86,7 @@ CMakeFiles/ex6.dir/main.c.o: \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_string.h \
   /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/heap.h \
   /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/printArray.h \
+  /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/hanoi.h \
   /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/quicksort.h \
   /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/swap.h \
-  /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/solve.h
+  /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/readInputs.h

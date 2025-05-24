@@ -1,6 +1,12 @@
 [
 {
   "directory": "/Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/build",
+  "command": "/usr/bin/clang   -g -std=gnu99 -arch arm64 -o CMakeFiles/ex6.dir/hanoi.c.o -c /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/hanoi.c",
+  "file": "/Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/hanoi.c",
+  "output": "CMakeFiles/ex6.dir/hanoi.c.o"
+},
+{
+  "directory": "/Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/build",
   "command": "/usr/bin/clang   -g -std=gnu99 -arch arm64 -o CMakeFiles/ex6.dir/heap.c.o -c /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/heap.c",
   "file": "/Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/heap.c",
   "output": "CMakeFiles/ex6.dir/heap.c.o"
@@ -31,9 +37,9 @@
 },
 {
   "directory": "/Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/build",
-  "command": "/usr/bin/clang   -g -std=gnu99 -arch arm64 -o CMakeFiles/ex6.dir/solve.c.o -c /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/solve.c",
-  "file": "/Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/solve.c",
-  "output": "CMakeFiles/ex6.dir/solve.c.o"
+  "command": "/usr/bin/clang   -g -std=gnu99 -arch arm64 -o CMakeFiles/ex6.dir/readInputs.c.o -c /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/readInputs.c",
+  "file": "/Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/readInputs.c",
+  "output": "CMakeFiles/ex6.dir/readInputs.c.o"
 },
 {
   "directory": "/Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/build",

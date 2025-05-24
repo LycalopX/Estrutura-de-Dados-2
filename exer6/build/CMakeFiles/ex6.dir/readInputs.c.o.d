@@ -1,5 +1,5 @@
-CMakeFiles/ex6.dir/solve.c.o: \
-  /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/solve.c \
+CMakeFiles/ex6.dir/readInputs.c.o: \
+  /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/readInputs.c \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/stdio.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/_stdio.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sys/cdefs.h \
@@ -78,5 +78,10 @@ CMakeFiles/ex6.dir/solve.c.o: \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/malloc/_ptrcheck.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sys/_types/_dev_t.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sys/_types/_mode_t.h \
-  /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/solve.h \
-  /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/moveDisk.h
+  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/string.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sys/_types/_rsize_t.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sys/_types/_errno_t.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/strings.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_strings.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_string.h \
+  /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/readInputs.h

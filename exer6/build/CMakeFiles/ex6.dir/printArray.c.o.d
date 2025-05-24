@@ -1,6 +1,7 @@
 CMakeFiles/ex6.dir/printArray.c.o: \
   /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/printArray.c \
   /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/printArray.h \
+  /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/hanoi.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/stdio.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/_stdio.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sys/cdefs.h \

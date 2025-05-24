@@ -129,6 +129,30 @@ ex6/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ex6.dir/build.make CMakeFiles/ex6.dir/build
 .PHONY : ex6/fast
 
+hanoi.o: hanoi.c.o
+.PHONY : hanoi.o
+
+# target to build an object file
+hanoi.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ex6.dir/build.make CMakeFiles/ex6.dir/hanoi.c.o
+.PHONY : hanoi.c.o
+
+hanoi.i: hanoi.c.i
+.PHONY : hanoi.i
+
+# target to preprocess a source file
+hanoi.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ex6.dir/build.make CMakeFiles/ex6.dir/hanoi.c.i
+.PHONY : hanoi.c.i
+
+hanoi.s: hanoi.c.s
+.PHONY : hanoi.s
+
+# target to generate assembly for a file
+hanoi.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ex6.dir/build.make CMakeFiles/ex6.dir/hanoi.c.s
+.PHONY : hanoi.c.s
+
 heap.o: heap.c.o
 .PHONY : heap.o
 
@@ -249,29 +273,29 @@ quicksort.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ex6.dir/build.make CMakeFiles/ex6.dir/quicksort.c.s
 .PHONY : quicksort.c.s
 
-solve.o: solve.c.o
-.PHONY : solve.o
+readInputs.o: readInputs.c.o
+.PHONY : readInputs.o
 
 # target to build an object file
-solve.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ex6.dir/build.make CMakeFiles/ex6.dir/solve.c.o
-.PHONY : solve.c.o
+readInputs.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ex6.dir/build.make CMakeFiles/ex6.dir/readInputs.c.o
+.PHONY : readInputs.c.o
 
-solve.i: solve.c.i
-.PHONY : solve.i
+readInputs.i: readInputs.c.i
+.PHONY : readInputs.i
 
 # target to preprocess a source file
-solve.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ex6.dir/build.make CMakeFiles/ex6.dir/solve.c.i
-.PHONY : solve.c.i
+readInputs.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ex6.dir/build.make CMakeFiles/ex6.dir/readInputs.c.i
+.PHONY : readInputs.c.i
 
-solve.s: solve.c.s
-.PHONY : solve.s
+readInputs.s: readInputs.c.s
+.PHONY : readInputs.s
 
 # target to generate assembly for a file
-solve.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ex6.dir/build.make CMakeFiles/ex6.dir/solve.c.s
-.PHONY : solve.c.s
+readInputs.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ex6.dir/build.make CMakeFiles/ex6.dir/readInputs.c.s
+.PHONY : readInputs.c.s
 
 swap.o: swap.c.o
 .PHONY : swap.o
@@ -306,6 +330,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... ex6"
+	@echo "... hanoi.o"
+	@echo "... hanoi.i"
+	@echo "... hanoi.s"
 	@echo "... heap.o"
 	@echo "... heap.i"
 	@echo "... heap.s"
@@ -321,9 +348,9 @@ help:
 	@echo "... quicksort.o"
 	@echo "... quicksort.i"
 	@echo "... quicksort.s"
-	@echo "... solve.o"
-	@echo "... solve.i"
-	@echo "... solve.s"
+	@echo "... readInputs.o"
+	@echo "... readInputs.i"
+	@echo "... readInputs.s"
 	@echo "... swap.o"
 	@echo "... swap.i"
 	@echo "... swap.s"

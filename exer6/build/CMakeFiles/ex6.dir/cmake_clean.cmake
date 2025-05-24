@@ -1,4 +1,6 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/ex6.dir/hanoi.c.o"
+  "CMakeFiles/ex6.dir/hanoi.c.o.d"
   "CMakeFiles/ex6.dir/heap.c.o"
   "CMakeFiles/ex6.dir/heap.c.o.d"
   "CMakeFiles/ex6.dir/main.c.o"
@@ -9,8 +11,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/ex6.dir/printArray.c.o.d"
   "CMakeFiles/ex6.dir/quicksort.c.o"
   "CMakeFiles/ex6.dir/quicksort.c.o.d"
-  "CMakeFiles/ex6.dir/solve.c.o"
-  "CMakeFiles/ex6.dir/solve.c.o.d"
+  "CMakeFiles/ex6.dir/readInputs.c.o"
+  "CMakeFiles/ex6.dir/readInputs.c.o.d"
   "CMakeFiles/ex6.dir/swap.c.o"
   "CMakeFiles/ex6.dir/swap.c.o.d"
   "ex6"
