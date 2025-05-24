@@ -1,10 +1,37 @@
+// Libraries
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
-// Let's rip the band-aid off, shall we?
+// Functions
+#include "heap.h"
+#include "printArray.h"
+#include "quicksort.h"
+#include "swap.h"
+#include "hanoi.h"
+#include "readInputs.h"
 
-// Princípios de divisão e conquista, recursividade e ordenação.
+// Main function
+int main(int argc, char *argv[])
+{
+    char *algorithm = malloc(5 * sizeof(char));
+    int *weights = malloc(100 * sizeof(int)), count = 0;
 
-// Busca quicksort ou heapsort
+    readInputs(argc, argv, algorithm, weights, &count);
 
+    // Caso você quer heap ou sort.
+    if (!strcmp(algorithm, "heap"))
+    {
+        heapSort(weights, count);
+        printf("\nAlgoritmo usado: HeapSort\n\n");
+    }
+    else if (!strcmp(algorithm, "quick"))
+    {
+        quicksort(weights, 0, count - 1);
+        printf("\nAlgoritmo usado: QuickSort\n\n");
+    }
+
+    setUp(weights, count);
+
+    return 0;
+}
