@@ -12,10 +12,6 @@ void printPino(struct pino x)
     printf("Tamanho: %d \n", x.length);
 
     printf("Discos: \n");
-    if (i >= x.length)
-    {
-        printf("NULL");
-    }
 
     while (i < x.length)
     {
@@ -30,6 +26,8 @@ void inicializePinos(int count, struct pino *pino1, struct pino *pino2, struct p
 {
     for (int i = 0; i < count; i++)
     {
+        (*pino1).discos[i].ordem = (count - i);
+
         // Para eles que estão vazios, kg e ordem = -1.
         (*pino2).discos[i].kg = -1;
         (*pino2).discos[i].ordem = -1;
@@ -38,7 +36,7 @@ void inicializePinos(int count, struct pino *pino1, struct pino *pino2, struct p
         (*pino3).discos[i].ordem = -1;
     }
 
-    pino1->streak = pino2->streak = pino3->streak = 1;
+    pino1->streak = pino2->streak = pino3->streak = 0;
 
     pino1->length = count;
     pino2->length = pino3->length = 0;
@@ -55,7 +53,8 @@ Básico: Não é possível mover pino maior para cima de um pino menor
     (passado como argumento na recursão)
 
     2.
-    Sempre moveremos o maior peso disponível quando houver uma array vazia
+    Sempre moveremos o maior peso disponível quando houver uma array vazia, exceto se essa array
+    for a primeira.
 
     3.
     Sempre registrar o peso de maior ordem movimentado (quando movido)
@@ -92,14 +91,14 @@ void move(struct pino *pinos, int prevMoved, int heaviest, int *pesoMovimentado)
         int p3 = (p1 + 2) % 3;
 
         int p1l = (pinos)[p1].length - 1;
-        int p2l = (pinos)[p1].length - 1;
-        int p3l = (pinos)[p1].length - 1;
+        int p2l = (pinos)[p2].length - 1;
+        int p3l = (pinos)[p3].length - 1;
 
         if (p2l < 0)
         {
             p2l = 0;
         }
-        else if (p3l < 0)
+        if (p3l < 0)
         {
             p3l = 0;
         }
@@ -117,7 +116,7 @@ void move(struct pino *pinos, int prevMoved, int heaviest, int *pesoMovimentado)
         }
 
         //  Regra 2
-        if ((pinos)[p1].length == 0)
+        if ((pinos)[p2].length == 0 && p2 != 0)
         {
             // Mover o maior peso disponível
 
@@ -134,7 +133,7 @@ void move(struct pino *pinos, int prevMoved, int heaviest, int *pesoMovimentado)
 
             break;
         }
-        else if ((pinos)[p3].length == 0)
+        else if ((pinos)[p3].length == 0 && p3 != 0)
         {
             // Mover o maior peso disponível
 
@@ -155,21 +154,53 @@ void move(struct pino *pinos, int prevMoved, int heaviest, int *pesoMovimentado)
         // Movimentado anteriormente
         struct peso w0 = (pinos)[prevMoved].discos[(pinos)[prevMoved].length - 1];
 
+        int isSmallest = (w1.kg < w2.kg || w2.kg < 0) && (w1.kg < w3.kg || w3.kg < 0);
+        int isMiddle = ((w1.kg < w2.kg || w2.kg < 0) && (w1.kg > w3.kg)) || ((w1.kg > w2.kg) && (w1.kg < w3.kg || w3.kg < 0));
+
         // Derivado da Regra básica: se o peso 1 for o mais leve, e o peso de segunda menor ordem
         // é o bloqueado de movimento, o peso 1 é o único que pode ser movido
-        if (w1.kg < w2.kg && (w1.kg < w3.kg) && (w0.ordem < w3.ordem && w0.ordem > w1.ordem))
+        if (isSmallest && (w0.ordem < w3.ordem && w0.ordem > w1.ordem))
         {
+
             origin = p1;
             dest = prevMoved;
 
             break;
         }
+
+        if (isMiddle) {
+            
+        }
+
+        // Em caso de empate
+        if (isSmallest)
+        {
+            origin = p1;
+
+            if ((w1.kg - w2.kg) < (w1.kg - w3.kg))
+            {
+                dest = p2;
+            }
+            else
+            {
+                dest = p3;
+            }
+        }
     }
 
-    printf("Vou mover %d com %d \n", origin, dest);
-    moveDisk(&(pinos)[origin], &(pinos)[dest], prevMoved, heaviest);
-
     struct peso worigin = (pinos)[origin].discos[(pinos)[origin].length - 1];
+
+    if (pinos[dest].length == 0)
+    {
+        printf("Movendo peso %d para pino vazio #%d \n", worigin.kg, dest + 1);
+    }
+    else
+    {
+        struct peso wdest = (pinos)[dest].discos[(pinos)[dest].length - 1];
+        printf("Trocando peso %d com peso %d \n", worigin.kg, wdest.kg);
+    }
+
+    moveDisk(pinos, origin, dest, prevMoved, heaviest);
 
     // Aumentar contagem de pesos movimentados
     (*pesoMovimentado) += worigin.kg;
@@ -204,19 +235,29 @@ void solve(struct peso *vector, int count)
 
     inicializePinos(count, &(pinos[0]), &(pinos[1]), &(pinos[2]));
 
+    printf("----------------------------------------------\n            Configuração inicial: \n----------------------------------------------");
+
     printf("\nPino 1 \n");
     printPino((pinos[0]));
     printf("\nPino 2 \n");
     printPino((pinos[1]));
     printf("\nPino 3 \n");
     printPino((pinos[2]));
+
+    printf("\n");
 
     move(pinos, 3, 1, &pesoMovimentado);
 
+    printf("\n");
+
+    printf("----------------------------------------------\n            Configuração final: \n----------------------------------------------");
+
     printf("\nPino 1 \n");
     printPino((pinos[0]));
     printf("\nPino 2 \n");
     printPino((pinos[1]));
     printf("\nPino 3 \n");
     printPino((pinos[2]));
+
+    printf("\n\n Peso movimentado: %d", pesoMovimentado);
 }

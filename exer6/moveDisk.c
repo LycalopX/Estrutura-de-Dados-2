@@ -17,8 +17,11 @@ static inline void swapDisk(struct peso *disk1, struct peso *disk2)
 // Troca o disco de posição, indica o pino que foi movido, reduz o tamanho (length), aumenta a sequência
 // Reseta pino que tinha sido movido na etapa anterior
 
-void moveDisk(struct pino *orig, struct pino *dest, int prevDest, int heaviest)
+void moveDisk(struct pino *pinos, int n1, int n2, int prevDest, int heaviest)
 {
+    struct pino *orig = &(pinos[n1]);
+    struct pino *dest = &(pinos[n2]);
+
     if (orig->length == 0) return;             /* nada para mover          */
 
     int from = orig->length - 1;               /* topo da origem           */
@@ -26,10 +29,15 @@ void moveDisk(struct pino *orig, struct pino *dest, int prevDest, int heaviest)
 
     /* --- ajuste de streak na origem --- */
     if (orig->length >= 2) {
-        
+
         int under = orig->discos[from-1].ordem;
-        if (orig->discos[from].ordem == under + 1 && (heaviest >= under))
+        if (orig->discos[from].ordem == under - 1 && (heaviest >= under))
             orig->streak--;
+    }
+    // isso previne problematizar os últimos pinos a serem tirados do primeiro pino 
+    else if (n1 == 0) {}
+    else {
+        orig->streak--;
     }
 
     /* --- troca efetiva --- */
@@ -40,8 +48,11 @@ void moveDisk(struct pino *orig, struct pino *dest, int prevDest, int heaviest)
     if (dest->length >= 1) {                   /* havia pelo menos 1 disco */
 
         int under = dest->discos[to-1].ordem;
-        if (dest->discos[to].ordem == under + 1 && heaviest >= under)
+        if ((dest->discos[to].ordem == under - 1 && heaviest >= under))
             dest->streak++;
+        
+    } else {
+        dest->streak++;
     }
 
     orig->length--;                            /* pop da origem            */
