@@ -1,0 +1,1 @@
+/usr/bin/cc -g -arch arm64 -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/main.dir/hanoi.c.o CMakeFiles/main.dir/heap.c.o CMakeFiles/main.dir/main.c.o CMakeFiles/main.dir/moveDisk.c.o CMakeFiles/main.dir/printArray.c.o CMakeFiles/main.dir/quicksort.c.o CMakeFiles/main.dir/readInputs.c.o CMakeFiles/main.dir/swap.c.o -o main

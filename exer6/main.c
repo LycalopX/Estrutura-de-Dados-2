@@ -33,5 +33,11 @@ int main(int argc, char *argv[])
 
     setUp(weights, count);
 
+    free(weights);
+    free(algorithm);
+    weights = NULL;
+    algorithm = NULL;
+    // Limpar a memória alocada
+
     return 0;
 }
