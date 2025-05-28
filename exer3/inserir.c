@@ -78,8 +78,6 @@ int inserir(char *path, char *data)
 
         snprintf(organizedData[i], 256, "%s;%s;%s", nUSP, nome, curso);
 
-        printf("Olha q pintão %s com Hashing %d\n", organizedData[i]);
-
         token = strtok(NULL, ","); // Próximo número USP
         takenSpace++;
     }
