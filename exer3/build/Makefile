@@ -249,6 +249,30 @@ main.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/main.c.s
 .PHONY : main.c.s
 
+readHashing.o: readHashing.c.o
+.PHONY : readHashing.o
+
+# target to build an object file
+readHashing.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/readHashing.c.o
+.PHONY : readHashing.c.o
+
+readHashing.i: readHashing.c.i
+.PHONY : readHashing.i
+
+# target to preprocess a source file
+readHashing.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/readHashing.c.i
+.PHONY : readHashing.c.i
+
+readHashing.s: readHashing.c.s
+.PHONY : readHashing.s
+
+# target to generate assembly for a file
+readHashing.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/readHashing.c.s
+.PHONY : readHashing.c.s
+
 reespalhamento.o: reespalhamento.c.o
 .PHONY : reespalhamento.o
 
@@ -321,6 +345,9 @@ help:
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... readHashing.o"
+	@echo "... readHashing.i"
+	@echo "... readHashing.s"
 	@echo "... reespalhamento.o"
 	@echo "... reespalhamento.i"
 	@echo "... reespalhamento.s"

@@ -13,6 +13,7 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer3/hashing.c" "CMakeFiles/main.dir/hashing.c.o" "gcc" "CMakeFiles/main.dir/hashing.c.o.d"
   "/Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer3/inserir.c" "CMakeFiles/main.dir/inserir.c.o" "gcc" "CMakeFiles/main.dir/inserir.c.o.d"
   "/Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer3/main.c" "CMakeFiles/main.dir/main.c.o" "gcc" "CMakeFiles/main.dir/main.c.o.d"
+  "/Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer3/readHashing.c" "CMakeFiles/main.dir/readHashing.c.o" "gcc" "CMakeFiles/main.dir/readHashing.c.o.d"
   "/Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer3/reespalhamento.c" "CMakeFiles/main.dir/reespalhamento.c.o" "gcc" "CMakeFiles/main.dir/reespalhamento.c.o.d"
   "/Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer3/remover.c" "CMakeFiles/main.dir/remover.c.o" "gcc" "CMakeFiles/main.dir/remover.c.o.d"
   )

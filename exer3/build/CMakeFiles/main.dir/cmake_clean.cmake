@@ -9,6 +9,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/main.dir/inserir.c.o.d"
   "CMakeFiles/main.dir/main.c.o"
   "CMakeFiles/main.dir/main.c.o.d"
+  "CMakeFiles/main.dir/readHashing.c.o"
+  "CMakeFiles/main.dir/readHashing.c.o.d"
   "CMakeFiles/main.dir/reespalhamento.c.o"
   "CMakeFiles/main.dir/reespalhamento.c.o.d"
   "CMakeFiles/main.dir/remover.c.o"

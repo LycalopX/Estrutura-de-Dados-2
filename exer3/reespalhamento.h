@@ -9,6 +9,8 @@ int reespalhamentoQuadrático(char **organizedData, int size, int place);
 
 int reespalhamentoDuplo(char **organizedData, int size, int place);
 
-int reespalhamento(char ***organizedData, int *size, int place, int takenSpace, int *newHash, char *path, FILE **fptr);
+int reespalhamento(char ***organizedData, int *size, int place, double factor, int *newHash, char *path);
+
+int encontrarPrimo(int n);
 
 #endif

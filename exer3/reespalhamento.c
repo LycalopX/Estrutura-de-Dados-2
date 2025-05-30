@@ -1,6 +1,7 @@
 #include "reespalhamento.h"
 #include "hashing.h"
 
+// Encontra primo mais próximo ao dobro, e maior que o dobro do valor fornecido
 int encontrarPrimo(int n)
 {
     n = 2 * n + 1;
@@ -23,7 +24,8 @@ int encontrarPrimo(int n)
     return primo;
 }
 
-void overWriteFirstLine(int size, char *path, FILE **file)
+// Apenas sobrescreve a primeira linha de um arquivo (serve para aumentar o tamanho da Hashing)
+void overWriteFirstLine(int size, char *path)
 {
 
     // Precisamos alterar no arquivo...
@@ -32,7 +34,7 @@ void overWriteFirstLine(int size, char *path, FILE **file)
     fptr = fopen(path, "r"); // Abrindo o arquivo para escrita no final
 
     // Arquivo intermediário
-    FILE *temporario = fopen("../storage/temporario.txt", "w");
+    FILE *temporario = fopen("../temporario.txt", "w");
 
     if (!temporario)
     {
@@ -43,9 +45,6 @@ void overWriteFirstLine(int size, char *path, FILE **file)
 
     char nova_linha[20];
     snprintf(nova_linha, sizeof(nova_linha), "%d\n", size);
-
-    // Imprimir a nova linha
-    printf("%s", nova_linha);
 
     // Escrever a nova primeira linha no arquivo temporário
     fputs(nova_linha, temporario);
@@ -65,35 +64,38 @@ void overWriteFirstLine(int size, char *path, FILE **file)
 
     // Substituir o arquivo original pelo temporário
     remove(path);
-    rename("../storage/temporario.txt", path);
-
-    (*file) = fopen(path, "a+");
+    rename("../temporario.txt", path);
 
     return;
 }
 
-// Encontra novo índice de posição na Hash, tanto para colisões quanto para valores antigos
+// Reespalha índice de posição na Hashing, para Fc <= 0.7
 int reespalhamentoQuadrático(char **organizedData, int size, int place)
 {
-    int i = 0, busca = place;
+    int i = 1;
+    int busca = place;
 
-    while (organizedData[busca])
+    // Continue enquanto a posição está ocupada
+    while (organizedData[busca] != NULL && organizedData[busca][0] != '\0' && organizedData[busca][0] != '\n')
     {
-        busca = ((i * i) + busca) % size;
+        busca = (place + i * i) % size;
         i++;
+        if (i >= size) {
+            fprintf(stderr, "Erro: tabela cheia, reespalhamento falhou.\n");
+            return -1; // ou trate de outra forma
+        }
     }
-
     return busca;
-};
+}
 
-// Encontra novo índice de posição na Hash, quando fator de carga <= 0.7
+// Encontra novo índice de posição na Hash, quando fator de carga >= 0.7
 int reespalhamentoDuplo(char **organizedData, int size, int place)
 {
     int i = 0, busca = place;
 
     int newHashing = 1 + ((5 * place) % (size));
 
-    while (organizedData[busca])
+    while (organizedData[busca] != NULL && busca < size)
     {
         i++;
         busca = (place + i * newHashing) % size;
@@ -102,12 +104,12 @@ int reespalhamentoDuplo(char **organizedData, int size, int place)
     return busca;
 };
 
-// Troca de lugar o valor antigo da hashing com o novo (reespalhamento duplo)
+// Expande array, e a atualiza com o reespalhamento quadrático (Fc >= 0.7)
 void updateHashing(char ***organizedData, int oldSize, int newSize)
 {
     char **oldData = *organizedData;
     char **newData = calloc(newSize, sizeof(char *));
-    
+
     if (!newData)
     {
         fprintf(stderr, "Erro ao alocar memória para nova tabela hash.\n");
@@ -118,11 +120,13 @@ void updateHashing(char ***organizedData, int oldSize, int newSize)
     {
         if (oldData[i])
         {
+
             int nusp;
             if (sscanf(oldData[i], "%d;", &nusp) == 1)
             {
                 int index = reespalhamentoQuadrático(newData, newSize, hashing(nusp) % newSize);
-                newData[index] = oldData[i];
+
+                newData[index] = strdup(oldData[i]);
             }
         }
     }
@@ -131,27 +135,28 @@ void updateHashing(char ***organizedData, int oldSize, int newSize)
     *organizedData = newData;
 }
 
-
-int reespalhamento(char ***organizedData, int *size, int previousHashing, int takenSpace, int *newHash, char *pathFile, FILE **fptr)
+int reespalhamento(char ***organizedData, int *size, int previousHashing, double factor, int *newHash, char *pathFile)
 {
-    double factor = ((double)(takenSpace)) / ((double)(*size));
 
-    if (factor <= 0.7)
+    if (factor < 0.7)
     {
         // Reespalhamento quadrático
         return reespalhamentoQuadrático(*organizedData, *size, previousHashing);
     }
     else if (factor >= 0.9)
     {
+
         // Expansão da tabela
         int oldSize = *size;
         *size = encontrarPrimo(*size); // Novo tamanho primo
 
         // Atualiza o tamanho no arquivo
-        overWriteFirstLine(*size, pathFile, fptr);
+        overWriteFirstLine(*size, pathFile);
 
         // Realocar nova tabela com os dados antigos
         updateHashing(organizedData, oldSize, *size);
+
+        *newHash = 0;
 
         // Retorna nova posição para a chave atual
         return reespalhamentoQuadrático(*organizedData, *size, previousHashing);
@@ -161,6 +166,7 @@ int reespalhamento(char ***organizedData, int *size, int previousHashing, int ta
         if (!(*newHash))
         {
             *newHash = 1;
+            updateHashing(organizedData, *size, *size);
         }
 
         // Reespalhamento duplo

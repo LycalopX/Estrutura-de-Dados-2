@@ -11,7 +11,7 @@ void criar(int size, char *path)
     FILE *fptr;
 
     // Create a file
-    snprintf(pathFile, sizeof(pathFile), "../storage/%s.txt", path); // Salvando na pasta storage.
+    snprintf(pathFile, sizeof(pathFile), "../%s.txt", path);
 
     fptr = fopen(pathFile, "w"); // Abrindo o arquivo para escrita
 
@@ -24,5 +24,5 @@ void criar(int size, char *path)
     fprintf(fptr, "%d\n", size); // Informando o tamanho da tabela hash na primeira linha
 
     fclose(fptr);
-    printf("Tabela hash criada com sucesso em %s\n", pathFile);
+    printf("Tabela hash criada com sucesso em %s\n\n", pathFile);
 }

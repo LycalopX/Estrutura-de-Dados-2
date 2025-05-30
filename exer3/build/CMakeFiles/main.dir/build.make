@@ -142,10 +142,24 @@ CMakeFiles/main.dir/main.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/main.dir/main.c.s"
 	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer3/main.c -o CMakeFiles/main.dir/main.c.s
 
+CMakeFiles/main.dir/readHashing.c.o: CMakeFiles/main.dir/flags.make
+CMakeFiles/main.dir/readHashing.c.o: /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer3/readHashing.c
+CMakeFiles/main.dir/readHashing.c.o: CMakeFiles/main.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer3/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building C object CMakeFiles/main.dir/readHashing.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/main.dir/readHashing.c.o -MF CMakeFiles/main.dir/readHashing.c.o.d -o CMakeFiles/main.dir/readHashing.c.o -c /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer3/readHashing.c
+
+CMakeFiles/main.dir/readHashing.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/main.dir/readHashing.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer3/readHashing.c > CMakeFiles/main.dir/readHashing.c.i
+
+CMakeFiles/main.dir/readHashing.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/main.dir/readHashing.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer3/readHashing.c -o CMakeFiles/main.dir/readHashing.c.s
+
 CMakeFiles/main.dir/reespalhamento.c.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/reespalhamento.c.o: /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer3/reespalhamento.c
 CMakeFiles/main.dir/reespalhamento.c.o: CMakeFiles/main.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer3/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building C object CMakeFiles/main.dir/reespalhamento.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer3/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building C object CMakeFiles/main.dir/reespalhamento.c.o"
 	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/main.dir/reespalhamento.c.o -MF CMakeFiles/main.dir/reespalhamento.c.o.d -o CMakeFiles/main.dir/reespalhamento.c.o -c /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer3/reespalhamento.c
 
 CMakeFiles/main.dir/reespalhamento.c.i: cmake_force
@@ -159,7 +173,7 @@ CMakeFiles/main.dir/reespalhamento.c.s: cmake_force
 CMakeFiles/main.dir/remover.c.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/remover.c.o: /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer3/remover.c
 CMakeFiles/main.dir/remover.c.o: CMakeFiles/main.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer3/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building C object CMakeFiles/main.dir/remover.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer3/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building C object CMakeFiles/main.dir/remover.c.o"
 	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/main.dir/remover.c.o -MF CMakeFiles/main.dir/remover.c.o.d -o CMakeFiles/main.dir/remover.c.o -c /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer3/remover.c
 
 CMakeFiles/main.dir/remover.c.i: cmake_force
@@ -177,6 +191,7 @@ main_OBJECTS = \
 "CMakeFiles/main.dir/hashing.c.o" \
 "CMakeFiles/main.dir/inserir.c.o" \
 "CMakeFiles/main.dir/main.c.o" \
+"CMakeFiles/main.dir/readHashing.c.o" \
 "CMakeFiles/main.dir/reespalhamento.c.o" \
 "CMakeFiles/main.dir/remover.c.o"
 
@@ -188,11 +203,12 @@ main: CMakeFiles/main.dir/criar.c.o
 main: CMakeFiles/main.dir/hashing.c.o
 main: CMakeFiles/main.dir/inserir.c.o
 main: CMakeFiles/main.dir/main.c.o
+main: CMakeFiles/main.dir/readHashing.c.o
 main: CMakeFiles/main.dir/reespalhamento.c.o
 main: CMakeFiles/main.dir/remover.c.o
 main: CMakeFiles/main.dir/build.make
 main: CMakeFiles/main.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer3/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking C executable main"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer3/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Linking C executable main"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/main.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

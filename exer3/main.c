@@ -1,47 +1,49 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-
 #include "criar.h"
 #include "inserir.h"
 #include "hashing.h"
+#include "buscar.h"
+#include "remover.h"
 
 // Main function
 int main(int argc, char *argv[])
 {
-    char *command = argv[1];
+  char *command = argv[1];
 
-    if (strcmp(command, "criar") == 0) {
-        int size = atoi(argv[2]);
-        char *path = argv[3];
+  if (strcmp(command, "criar") == 0)
+  {
+    int size = atoi(argv[2]);
+    char *path = argv[3];
 
-        criar(size, path);
-    }
-    else if (strcmp(command, "inserir") == 0) {
-        char *path = argv[2];
-        char *data = argv[3];
+    criar(size, path);
+  }
+  else if (strcmp(command, "inserir") == 0)
+  {
+    char *path = argv[2];
+    char *data = argv[3];
 
-        inserir(path, data);
-    }
-    else if (strcmp(command, "buscar") == 0) {
-
-    }
-    else if (strcmp(command, "remover") == 0) {
-
-    } else {
-        printf("Comando inválido. Use 'criar', 'inserir', 'buscar' ou 'remover'.\n");
-        return 0;
-    }
+    inserir(path, data);
+  }
+  else if (strcmp(command, "buscar") == 0)
+  {
+    buscar(argc, argv);
+  }
+  else if (strcmp(command, "remover") == 0)
+  {
+    remover(argc, argv);
+  }
+  else
+  {
+    printf("Comando inválido. Use 'criar', 'inserir', 'buscar' ou 'remover'.\n");
+    return 0;
+  }
 }
-
-
 
 /*
 Exercício 3: Implementação de Tabela Hash para Alunos
 
-Implemente uma tabela hash para armazenar os dados de alunos, em que cada aluno é representado 
-por uma estrutura com os seguintes campos: número USP, nome e curso. 
-A chave utilizada pela função hash deve ser baseada no número USP, que é um identificador 
+Implemente uma tabela hash para armazenar os dados de alunos, em que cada aluno é representado
+por uma estrutura com os seguintes campos: número USP, nome e curso.
+A chave utilizada pela função hash deve ser baseada no número USP, que é um identificador
 numérico único (tipo unsigned int, dentro da struct).
 
 Função Hash:
@@ -98,7 +100,6 @@ Saída:
 - Em busca: imprimir dados do aluno correspondente.
 */
 
-
 /*
  * Teste do algoritmo
  *
@@ -127,16 +128,4 @@ Saída:
  *    - Remove os dados de cada aluno passado como parâmetro que for encontrado na tabela.
  *    - Não se esqueça de criar uma lápide nos registros removidos;
  *    - Salva a tabela hash atualizada no path.
- *
- * Se nenhum parâmetro for informado, o algoritmo deve executar os seguintes testes automaticamente:
- *  1. Criar uma tabela hash com tamanho 11; 
-        main criar 11 hash
-
- *  2. Inserir dados de cinco alunos; 
-        main inserir hash 12345678,João da Silva,Engenharia,23456789,Maria Oliveira,Medicina,34567890,Carlos Souza,Direito,45678901,Ana Costa,Arquitetura,56789012,Rafael Lima,Computação
-
- *  3. Remover os dados de dois alunos;
- *  4. Salvar a tabela no diretório raiz do projeto com nome "hash.txt";
- *  5. Carregar a tabela hash armazenada no arquivo "hash.txt" e fazer a busca
- *     de dois alunos cadastrados e de um que não esteja cadastrado.
  */

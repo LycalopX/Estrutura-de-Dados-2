@@ -35,28 +35,50 @@ unsigned int hashing(int nUSP)
 
     // Etapa 3: XOR final entre bits
 
-    unsigned int xor, impar, par;
+    unsigned int xor, impar, par, hashed = 2;
+    unsigned int temp = invertido;
 
-    impar = (invertido % 10 >> 3) & 1;
-    invertido /= 10;
+    int odd;
 
-    par = (invertido % 10) & 1;
-    invertido /= 10;
-
-    xor = (impar ^ par);
-
-    unsigned int hashed = xor;
-
-    // Pegando cada dígito, e aplicando XOR
-    for (int i = 1; invertido != 0; i++)
+    for (int j = 0; j < 4; j++)
     {
-        digito = (invertido % 10) >> ((i % 2) * 3) & 1;
-        invertido /= 10;
+        temp = invertido;
 
-        xor = xor ^ digito;
+        impar = ((temp % 10) >> (j)) & 1;
+        temp /= 10;
 
-        // Resultado da primeira operação
-        hashed = (hashed << 1) | xor;
+        par = ((temp % 10) >> (3 - j)) & 1;
+        temp /= 10;
+
+        xor = (impar ^ par);
+
+        // Pegando cada dígito, e aplicando XOR
+        for (int i = 1; temp != 0; i++)
+        {
+            odd = (i % 2);
+
+            if (odd)
+            {
+                digito = ((temp % 10) >> (3 - j)) & 1;
+            }
+            else
+            {
+                digito = ((temp % 10) >> (j)) & 1;
+            }
+
+            temp /= 10;
+
+            xor = xor ^ digito;
+        }
+
+        if (hashed == 2)
+        {
+            hashed = xor;
+        }
+        else
+        {
+            hashed = (hashed << 1) | xor;
+        }
     }
 
     return hashed;

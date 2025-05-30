@@ -1,5 +1,9 @@
 CMakeFiles/main.dir/main.c.o: \
   /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer3/main.c \
+  /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer3/criar.h \
+  /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer3/inserir.h \
+  /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer3/hashing.h \
+  /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer3/buscar.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/stdio.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/_stdio.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sys/cdefs.h \
@@ -84,6 +88,4 @@ CMakeFiles/main.dir/main.c.o: \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/strings.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_strings.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_string.h \
-  /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer3/criar.h \
-  /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer3/inserir.h \
-  /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer3/hashing.h
+  /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer3/remover.h

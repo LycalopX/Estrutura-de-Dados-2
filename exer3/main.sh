@@ -12,7 +12,7 @@ if [ $# -eq 0 ]; then
     echo "Teste: Criando tabela hash com 11 posições"
     ./main criar 11 hash
 
-    echo "Teste: Inserindo dados de cinco alunos"
+    echo "Teste: Inserindo dados de vários alunos"
 ./main inserir hash "15489730,Thales Vasconcelos Aguiar de Oliveira,Computação,\
 41923202,Rosa Oliveira Pinto da Silva,Civil,\
 41923202,Rosemar da Silva,Materiais,\
@@ -57,11 +57,12 @@ if [ $# -eq 0 ]; then
 70293847,Larissa Faria,Oceanografia"
 
 
-#    echo "Teste: Consultando dados de um aluno"
-#    ./main buscar hash 15436911
+    echo "Teste: Removendo um aluno"
+    ./main remover hash "23456789,34567890"
 
-#    echo "Teste: Removendo um aluno"
-#    ./main remover hash 23456789 34567890
+    echo "Teste: Consultando dados de um aluno"
+    ./main buscar hash "15436911,39220392,62319832"
+
 else
     ./main "$@"
 fi
