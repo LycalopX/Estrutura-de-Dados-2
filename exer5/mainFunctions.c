@@ -8,6 +8,7 @@
     LIST FUNCTIONS
 */
 
+// Converts a string into a list of character elements
 List *List_FromWord(char *word)
 {
     // Validate the input word
@@ -19,15 +20,16 @@ List *List_FromWord(char *word)
     List *list = List_New();
     while (*word != '\0')
     {
-        char *value = malloc(sizeof(char));
+        char *value = malloc(sizeof(char)); // Allocate memory for a single character
         value[0] = *word;
         Element *element = Element_New("char", value);
-        List_Append(list, element);
+        List_Append(list, element); // Append each character as an element to the list
         word++;
     }
     return list;
 }
 
+// Converts all characters in the list to uppercase
 List *List_WordToUpperCase(List *list)
 {
     if (list == NULL)
@@ -41,40 +43,43 @@ List *List_WordToUpperCase(List *list)
         if (element != NULL)
         {
             char *value = Element_GetDataValue(element);
-            *value = Char_ToUpperCase(*value);
+            *value = Char_ToUpperCase(*value); // Convert char to uppercase
         }
     }
 
     return list;
 }
 
+// Compares two lists element by element
 int List_Compare(List *list1, List *list2)
 {
-    // Same list
+    // Check if they are the same reference
     if (list1 == list2)
     {
         return 1;
     }
 
-    // Validate the input lists
+    // Null check
     if (list1 == NULL || list2 == NULL)
     {
         return -1;
     }
 
+    // Compare each element using Data_Compare
     for (unsigned int i = 0; i < List_Size(list1); i++)
     {
         Element *element1 = List_GetElementOfIndex(list1, i);
         Element *element2 = List_GetElementOfIndex(list2, i);
         if (Data_Compare(Element_GetData(element1), Element_GetData(element2)) != 0)
         {
-            return 0; // Elements are not equal
+            return 0; // Found a mismatch
         }
     }
 
-    return 1; // Lists are equal
+    return 1; // All elements matched
 }
 
+// Prints the list elements using Element_Print
 void MyPrintList(List *list)
 {
     if (list == NULL)
@@ -87,7 +92,7 @@ void MyPrintList(List *list)
     while (element != NULL)
     {
         Element_Print(element);
-        element = Element_Next(element);
+        element = Element_Next(element); // Move to next element
     }
 }
 
@@ -95,9 +100,9 @@ void MyPrintList(List *list)
     CHAR FUNCTIONS
 */
 
+// Converts a lowercase letter to uppercase, returns unchanged otherwise
 char Char_ToUpperCase(char c)
 {
-    // Validation
     if (c >= 'a' && c <= 'z')
     {
         return c - ('a' - 'A');
@@ -109,6 +114,7 @@ char Char_ToUpperCase(char c)
     METHODS
 */
 
+// Inserts an element into a sorted list using binary search to find the correct position
 void InsertMethod_BinaryInsertion(List *list, Element *element)
 {
     if (list == NULL || element == NULL)
@@ -119,10 +125,15 @@ void InsertMethod_BinaryInsertion(List *list, Element *element)
     int low = 0;
     int high = List_Size(list) - 1;
     int mid;
+
+    // Binary search loop to find the correct insert position
     while (low <= high)
     {
         mid = (low + high) / 2;
-        int cmp = Data_Compare(Element_GetData(element), Element_GetData(List_GetElementOfIndex(list, mid)));
+        int cmp = Data_Compare(
+            Element_GetData(element),
+            Element_GetData(List_GetElementOfIndex(list, mid))
+        );
 
         if (cmp < 0)
         {
@@ -134,14 +145,19 @@ void InsertMethod_BinaryInsertion(List *list, Element *element)
         }
     }
 
+    // Insert element at the found position
     List_Insert(list, element, low);
 }
 
+// Creates a new sorted list using binary insertion sort on a copy of the original list
 List *OrderMethod_InsertionUsingList(List *list)
 {
     List *sortedList = List_New();
+
+    // Push the first element directly
     List_Push(sortedList, Element_Copy(List_GetFirstElement(list)));
 
+    // Iterate over the remaining elements and insert them into the sorted list
     for (unsigned i = 1; i < List_Size(list); i++)
     {
         Element *currentElement = List_GetElementOfIndex(list, i);

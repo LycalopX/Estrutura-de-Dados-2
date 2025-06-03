@@ -3,13 +3,15 @@
 
 #include "list.h"
 
+// Create and initialize a new List instance
 List *List_New(){
-    List *newList = malloc(sizeof(List) * 1);
-    newList->proxy = NULL;
+    List *newList = malloc(sizeof(List));
+    newList->proxy = NULL; // Head of the list
     newList->size = 0;
     return newList;
 }
 
+// Destroys the list and all its elements (including their data)
 void List_Destroy(List *list){
     Element *element = List_GetFirstElement(list);
     while(element != NULL){
@@ -21,10 +23,12 @@ void List_Destroy(List *list){
     free(list);
 }
 
+// Destroys the list object only, leaves elements intact
 void List_DestroyWithoutElements(List *list){
     free(list);
 }
 
+// Destroys the list and its elements, but not the data inside the elements
 void List_DestroyWithoutElementsData(List *list){
     Element *element = List_GetFirstElement(list);
     while(element != NULL){
@@ -36,6 +40,7 @@ void List_DestroyWithoutElementsData(List *list){
     free(list);
 }
 
+// Destroys the list and its elements, but not the value stored in the data (e.g., if value is reused)
 void List_DestroyWithoutElementsDataValue(List *list){
     Element *element = List_GetFirstElement(list);
     while(element != NULL){
@@ -47,14 +52,14 @@ void List_DestroyWithoutElementsDataValue(List *list){
     free(list);
 }
 
+// Swaps two elements in the list by their indices
 void List_SwapElements(List *list, unsigned int index1, unsigned int index2){
-    // Validation of indices
     if(index1 >= List_Size(list) || index2 >= List_Size(list)){
         fprintf(stderr, "Index out of bounds\n");
         return;
     }
 
-    // Order indexes to ensure index1 < index2
+    // Ensure index1 < index2 for consistent logic
     if(index1 > index2){
         unsigned int temp = index1;
         index1 = index2;
@@ -66,9 +71,8 @@ void List_SwapElements(List *list, unsigned int index1, unsigned int index2){
     Element *element1 = List_GetElementOfIndex(list, index1);
     Element *element2 = List_GetElementOfIndex(list, index2);
 
-    // No need to swap if both indices point to the same element
     if(element1 == element2){
-        return;
+        return; // Nothing to swap
     }
 
     Element *prev1 = Element_GetPrevious(element1);
@@ -81,9 +85,8 @@ void List_SwapElements(List *list, unsigned int index1, unsigned int index2){
         Element_SetPrevious(next2, element1);
     }
     Element_SetPrevious(element2, prev1);
-    // First element of the list
     if(prev1 == NULL){
-        list->proxy = element2;
+        list->proxy = element2; // Update head if element1 was first
     }
     else{
         Element_SetNext(prev1, element2);
@@ -103,6 +106,7 @@ void List_SwapElements(List *list, unsigned int index1, unsigned int index2){
     }
 }
 
+// Append an element to the end of the list
 void List_Append(List *list, Element *element){
     Element *lastElement = List_GetLastElement(list);
     if(lastElement != NULL){
@@ -110,12 +114,13 @@ void List_Append(List *list, Element *element){
         Element_SetPrevious(element, lastElement);
     }
     else{
-        list->proxy = element;
+        list->proxy = element; // First element in the list
     }
 
     list->size++;
 }
 
+// Insert an element at the beginning of the list
 void List_Push(List *list, Element *element) {
     Element *firstElement = List_GetFirstElement(list);
     if (firstElement == NULL) {
@@ -129,13 +134,13 @@ void List_Push(List *list, Element *element) {
     list->size++;
 }
 
+// Insert element at specific index in the list
 void List_Insert(List *list, Element *element, unsigned int index){
     if(index > List_Size(list)){
         fprintf(stdout, "Index out of bounds\n");
         return;
     }
 
-    // End of the list
     if (index == List_Size(list)) {
         List_Append(list, element);
         return;
@@ -148,9 +153,8 @@ void List_Insert(List *list, Element *element, unsigned int index){
     Element_SetPrevious(element, prevElement);
     Element_SetPrevious(oldElement, element);
 
-    // First element of the list
     if(prevElement == NULL){
-        list->proxy = element; 
+        list->proxy = element; // Inserting at the start
     }
     else{
         Element_SetNext(prevElement, element);
@@ -159,6 +163,7 @@ void List_Insert(List *list, Element *element, unsigned int index){
     list->size++;
 }
 
+// Remove element at given index from the list
 void List_RemoveAt(List *list, unsigned int index){
     if(index >= List_Size(list)){
         fprintf(stdout, "Index out of bounds\n");
@@ -173,7 +178,7 @@ void List_RemoveAt(List *list, unsigned int index){
         Element_SetNext(previousElement, nextElement);
     }
     else{
-        list->proxy = nextElement;
+        list->proxy = nextElement; // Removing first element
     }
 
     if(nextElement != NULL){
@@ -184,10 +189,12 @@ void List_RemoveAt(List *list, unsigned int index){
     list->size--;
 }
 
+// Returns current list size
 unsigned int List_Size(List *list){
     return list->size;
 }
 
+// Utility for type system – counts elements in list without trusting the stored size
 unsigned int List_CountSize(void *self){
     unsigned int size = 0;
     List *list = (List*)self;
@@ -201,6 +208,7 @@ unsigned int List_CountSize(void *self){
     return size;
 }
 
+// Print all elements in the list
 void List_Print(List *list){
     Element *element = List_GetFirstElement(list);
     printf("Size: %d -> ", List_Size(list));
@@ -212,10 +220,12 @@ void List_Print(List *list){
     printf("\n");
 }
 
+// Get first element in list
 Element *List_GetFirstElement(List *list){
     return list->proxy;
 }
 
+// Get last element in list
 Element *List_GetLastElement(List *list){
     Element *lastElement = List_GetFirstElement(list);
 
@@ -230,6 +240,7 @@ Element *List_GetLastElement(List *list){
     return lastElement;
 }
 
+// Get element at a specific index
 Element *List_GetElementOfIndex(List *list, unsigned int index){
     if(index >= List_Size(list)){
         fprintf(stderr, "Index [%u] out of bounds\n", index);
@@ -244,20 +255,25 @@ Element *List_GetElementOfIndex(List *list, unsigned int index){
     return elementOfIndex;
 }
 
-// GENERIC
+// GENERIC TYPE SUPPORT BELOW
+
 #include "typeManager.h"
+
+// Type action: destroy a list instance through generic type system
 Data **List_TypeDestroy(Data **data) {
     List *typeVariable = Data_GetList(*data);
     List_Destroy(typeVariable);
     return NULL;
 }
 
+// Type action: print a list via generic type system
 Data **List_TypePrint(Data **data) {
     List *typeVariable = Data_GetList(*data);
     List_Print(typeVariable);
     return data;
 }
 
+// Register "list" type and its actions with the type system
 void List_InitializeType() {
     Type *listType = Type_New("list");
     Type_Add(listType);
@@ -267,10 +283,12 @@ void List_InitializeType() {
     TypeAction_Create("print", "list", List_TypePrint);
 }
 
+// Helper for element data access when it stores a list
 List *Element_GetListData(Element *element){
     return Data_GetList(Element_GetData(element));
 }
 
+// Extract List from Data
 List *Data_GetList(Data *data){
     return (List*)Data_GetValue(data);
 }

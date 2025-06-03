@@ -5,8 +5,9 @@
 #include "typeManager.h"
 #include "data.h"
 
+// Create a new Type
 Type *Type_New(char *name) {
-    // Stop if type already exist
+    // Stop if the type already exists
     if (Type_Get(name) != NULL) {
         printf("Error: Type (%s) already defined\n", name);
         return NULL;
@@ -14,12 +15,13 @@ Type *Type_New(char *name) {
 
     Type *newType = malloc(sizeof(Type));
 
-    // Memory for name
+    // Allocate memory for type name
     newType->name = strdup(name); 
     
     return newType;
 }
 
+// Free a Type instance
 void Type_Destroy(Type *type) {
     if (type != NULL) {
         free(type->name);
@@ -27,23 +29,20 @@ void Type_Destroy(Type *type) {
     }
 }
 
-// Basic set
-/*
-    data[0] is the data to receive the value
-    data[1] is the value to set
-*/ 
+// Default "set value" function for all basic types
+// data[0] is the target, data[1] is the value to assign
 Data **Type_DefaultSetValue(Data **data) {
     data[0]->value = data[1]->value;  
     return data;
 }
 
-// Basic destroy
+// Default "destroy" function for basic types
 Data **Type_DefaultDestroyValue(Data **data) {
     free(Data_GetValue(*data));
     return data;
 }
 
-// Basic prints
+// Default print functions
 Data **Int_PrintData(Data **data){
     printf("%d", *(int *)(*data)->value);
     return data;
@@ -69,12 +68,12 @@ Data **String_PrintData(Data **data){
     return data;
 }
 
-// Initialize typeList 
+// Type registry
 Type **typeList = NULL;
 int typeListCount = 0;
 int typeListSpace = 10;
 
-
+// Add a new Type to the list
 void Type_Add(Type *newType) {
     if (typeListCount >= typeListSpace) {
         typeListSpace *= 2;
@@ -91,7 +90,7 @@ void Type_Add(Type *newType) {
     typeListCount++;
 }
 
-// Initialize basic types
+// Automatically initialize basic types at program startup
 __attribute__((constructor))
 void InitializeBasicTypes() {
     typeList = malloc(sizeof(Type *) * typeListSpace);
@@ -111,7 +110,7 @@ void InitializeBasicTypes() {
     Type_Add(stringType);
 }
 
-// Destroy all types
+// Automatically clean up all types at program exit
 __attribute__((destructor))
 void DestroyAllTypes() {
     for (int i = 0; i < typeListCount; i++) {
@@ -121,6 +120,7 @@ void DestroyAllTypes() {
     free(typeList);
 }
 
+// Get Type by name
 Type *Type_Get(char *type) {
     for (int i = 0; i < typeListCount; i++) {
         if (typeList[i] && typeList[i]->name && strcmp(typeList[i]->name, type) == 0) {
@@ -131,47 +131,40 @@ Type *Type_Get(char *type) {
     return NULL;
 }
 
+// Get the Type of a Data
 Type *Type_GetData(Data *data) {
     return Type_Get(data->type);
 }
 
+// Get the name of a Type
 char *Type_GetName(Type *type){
     return type->name;
 }
 
 // ---------------------------
-// Compare function
+// Comparison functions
 // ---------------------------
 
-// Basic compare functions
+// Default int-to-int comparison
 int CompareData_int_int(Data *data1, Data *data2){
-    if(Data_GetInt(data1) > Data_GetInt(data2)){
-        return 1;
-    }
-    else if(Data_GetInt(data1) < Data_GetInt(data2)){
-        return -1;
-    }
-    else{
-        return 0;
-    }
+    if(Data_GetInt(data1) > Data_GetInt(data2)) return 1;
+    else if(Data_GetInt(data1) < Data_GetInt(data2)) return -1;
+    else return 0;
 }
 
+// Default char-to-char comparison
 int CompareData_char_char(Data *data1, Data *data2){
-    if(Data_GetChar(data1) > Data_GetChar(data2)){
-        return 1;
-    }
-    else if(Data_GetChar(data1) < Data_GetChar(data2)){
-        return -1;
-    }
-    else{
-        return 0;
-    }
+    if(Data_GetChar(data1) > Data_GetChar(data2)) return 1;
+    else if(Data_GetChar(data1) < Data_GetChar(data2)) return -1;
+    else return 0;
 }
 
+// Comparison registry
 CompareFunction **compareFunctionList = NULL;
 int compareFunctionListSpace = 10;
 int compareFunctionListCount = 0;
 
+// Create new CompareFunction
 CompareFunction *CompareFunction_New(char *type1, char *type2, int (*compareFunction)(Data*, Data*)){
     CompareFunction *newCompareFunction = malloc(sizeof(CompareFunction));
     newCompareFunction->id = malloc(strlen(type1) + strlen(type2) + 2);
@@ -181,6 +174,7 @@ CompareFunction *CompareFunction_New(char *type1, char *type2, int (*compareFunc
     return newCompareFunction;
 }
 
+// Free a CompareFunction
 void CompareFunction_Destroy(CompareFunction *compareFunction){
     if (compareFunction != NULL) {
         free(compareFunction->id);
@@ -188,33 +182,33 @@ void CompareFunction_Destroy(CompareFunction *compareFunction){
     }
 }
 
+// Add CompareFunction to list
 void CompareFunction_Add(CompareFunction *newCompareFunction){
     if (compareFunctionListCount >= compareFunctionListSpace) {
         compareFunctionListSpace *= 2;
-        CompareFunction **newCompareFunctionList = realloc(compareFunctionList, compareFunctionListSpace * sizeof(CompareFunction *));
-        if (newCompareFunctionList == NULL) {
+        CompareFunction **newList = realloc(compareFunctionList, compareFunctionListSpace * sizeof(CompareFunction *));
+        if (newList == NULL) {
             compareFunctionListSpace /= 2;
             printf("Error: Failed to allocate memory for compareFunctionList\n");
             return;
         }
-        compareFunctionList = newCompareFunctionList;
+        compareFunctionList = newList;
     }
 
-    compareFunctionList[compareFunctionListCount] = newCompareFunction;
-    compareFunctionListCount++;
+    compareFunctionList[compareFunctionListCount++] = newCompareFunction;
 }
 
+// Retrieve CompareFunction by id
 CompareFunction *CompareFunction_GetById(char *id){
     for(int i = 0; i < compareFunctionListCount; i++){
         if(strcmp(compareFunctionList[i]->id, id) == 0){
             return compareFunctionList[i];
         }
     }
-
     return NULL;
 }
 
-// Initialize basic compare functions
+// Automatically initialize compare functions
 __attribute__((constructor))
 void InitializeBasicCompareFunctions() {
     compareFunctionList = malloc(sizeof(CompareFunction *) * compareFunctionListSpace);
@@ -223,14 +217,11 @@ void InitializeBasicCompareFunctions() {
         return;
     }
 
-    CompareFunction *int_int_CompareFunction = CompareFunction_New("int", "int", CompareData_int_int);
-    CompareFunction *char_char_CompareFunction = CompareFunction_New("char", "char", CompareData_char_char);
-    
-    CompareFunction_Add(int_int_CompareFunction);
-    CompareFunction_Add(char_char_CompareFunction);
+    CompareFunction_Add(CompareFunction_New("int", "int", CompareData_int_int));
+    CompareFunction_Add(CompareFunction_New("char", "char", CompareData_char_char));
 }
 
-// Destroy all compare functions
+// Automatically clean up compare functions
 __attribute__((destructor))
 void DestroyAllComapareFunctions(){
     for(int i = 0; i < compareFunctionListCount; i++){
@@ -240,26 +231,23 @@ void DestroyAllComapareFunctions(){
     free(compareFunctionList);
 }
 
+// Build a compare function ID from types
 char *ConvertTypesNamesToCompareId(char *id, char *type1, char *type2){
     strcpy(id, type1);
     strcat(id, "_");
     strcat(id, type2);
-
     return id;
 }
 
+// Build a compare function ID from two Data objects
 char *ConvertDataToCompareId(char *id, Data *data1, Data *data2){
     return ConvertTypesNamesToCompareId(id, Data_GetTypeName(data1), Data_GetTypeName(data2));
 }
 
-
+// Compare two Data values using registered functions
 int Data_Compare(Data *data1, Data *data2){
-    // Same data
-    if(data1 == data2) {
-        return 0; 
-    }
+    if(data1 == data2) return 0;
 
-    // Validate the input data
     if(data1 == NULL || data2 == NULL) {
         printf("Error: One data is NULL\n");
         return -1;
@@ -268,12 +256,15 @@ int Data_Compare(Data *data1, Data *data2){
     char *id = malloc(strlen(data1->type) + strlen(data2->type) + 2);
     ConvertDataToCompareId(id, data1, data2);
     CompareFunction *compareFunction = CompareFunction_GetById(id);
+
     if(compareFunction == NULL){
-        Data *oldData1 = data1;
+        // Try reversed types
+        Data *tmp = data1;
         data1 = data2;
-        data2 = oldData1;
+        data2 = tmp;
+
         ConvertDataToCompareId(id, data1, data2);
-        CompareFunction *compareFunction = CompareFunction_GetById(id);
+        compareFunction = CompareFunction_GetById(id);
 
         if(compareFunction == NULL){
             printf("Error: Compare function not found for types %s\n", id);
@@ -290,6 +281,7 @@ int Data_Compare(Data *data1, Data *data2){
 // Type actions
 // ---------------------------
 
+// Create a new TypeAction
 TypeAction *TypeAction_New(char *name, char *type, Action *action){
     if(name == NULL || type == NULL || action == NULL) {
         printf("Error: Invalid parameters for TypeAction_New\n");
@@ -301,13 +293,14 @@ TypeAction *TypeAction_New(char *name, char *type, Action *action){
     }
 
     TypeAction *newTypeAction = malloc(sizeof(TypeAction));
-    newTypeAction->name = strdup(name);  // Memory for name
-    newTypeAction->type = strdup(type);  // Memory for type
+    newTypeAction->name = strdup(name);
+    newTypeAction->type = strdup(type);
     newTypeAction->action = action;
 
     return newTypeAction;
 }
 
+// Free a TypeAction
 void TypeAction_Destroy(TypeAction *typeAction){
     if (typeAction != NULL) {
         free(typeAction->name);
@@ -316,23 +309,24 @@ void TypeAction_Destroy(TypeAction *typeAction){
     }
 }
 
+// Add a TypeAction to the list
 int TypeAction_Add(TypeAction *newTypeAction){
     if (typeActionListCount >= typeActionListSpace) {
         typeActionListSpace *= 2;
-        TypeAction **newTypeActionList = realloc(typeActionList, typeActionListSpace * sizeof(TypeAction *));
-        if (newTypeActionList == NULL) {
+        TypeAction **newList = realloc(typeActionList, typeActionListSpace * sizeof(TypeAction *));
+        if (newList == NULL) {
             typeActionListSpace /= 2;
             printf("Error: Failed to allocate memory for typeActionFuncionList\n");
             return 0;
         }
-        typeActionList = newTypeActionList;
+        typeActionList = newList;
     }
 
-    typeActionList[typeActionListCount] = newTypeAction;
-    typeActionListCount++;
+    typeActionList[typeActionListCount++] = newTypeAction;
     return 1;
 }
 
+// Create and add a TypeAction
 int TypeAction_Create(char *name, char *type, Action *action) {
     TypeAction *newTypeAction = TypeAction_New(name, type, action);
     if (newTypeAction == NULL) {
@@ -343,6 +337,7 @@ int TypeAction_Create(char *name, char *type, Action *action) {
     return 0;
 }
 
+// TypeAction registry
 TypeAction **typeActionList = NULL;
 int typeActionListSpace = 30;
 int typeActionListCount = 0;
@@ -378,7 +373,7 @@ void InitializeBasicTypeActions() {
     TypeAction_Create("destroy", "string", Type_DefaultDestroyValue);
 }
 
-// Destroy all type actions
+// Clean up type actions
 __attribute__((destructor))
 void DestroyAllTypeActions(){
     for(int i = 0; i < typeActionListCount; i++){
@@ -388,9 +383,12 @@ void DestroyAllTypeActions(){
     free(typeActionList);
 }
 
+// Get a TypeAction by name and type
 TypeAction *TypeAction_Get(char *name, char *type){
     for (int i = 0; i < typeActionListCount; i++) {
-        if (typeActionList[i] != NULL && strcmp(typeActionList[i]->name, name) == 0 && strcmp(typeActionList[i]->type, type) == 0) {
+        if (typeActionList[i] != NULL &&
+            strcmp(typeActionList[i]->name, name) == 0 &&
+            strcmp(typeActionList[i]->type, type) == 0) {
             return typeActionList[i];
         }
     }
@@ -398,6 +396,7 @@ TypeAction *TypeAction_Get(char *name, char *type){
     return NULL;
 }
 
+// Get the action from a TypeAction
 Action *TypeAction_GetAction(TypeAction *typeAction) {
     if (typeAction == NULL) {
         printf("Error: Type action can't be NULL\n");
@@ -407,6 +406,7 @@ Action *TypeAction_GetAction(TypeAction *typeAction) {
     return typeAction->action;
 }
 
+// Use a TypeAction with a type and data
 Data **TypeAction_UseAction(char *name, char *type, Data **data){
     TypeAction *typeAction = TypeAction_Get(name, type);
     if (typeAction == NULL) {
@@ -423,10 +423,12 @@ Data **TypeAction_UseAction(char *name, char *type, Data **data){
     return action(data);
 }
 
+// Shortcut for single-data input
 Data **TypeAction_UseActionMonoData(char *name, Data *data){
     return TypeAction_UseAction(name, data->type, &data);
 }
 
+// Modify an existing action
 int TypeAction_EditAction(char *name, char *type, Action *newAction) {
     TypeAction *typeAction = TypeAction_Get(name, type);
     if (typeAction == NULL) {
