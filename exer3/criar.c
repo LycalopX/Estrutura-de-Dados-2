@@ -4,16 +4,16 @@
 #include <stdlib.h>
 #include <string.h>
 
+// Cria arquivo de tabela hash com tamanho informado
 void criar(int size, char *path)
 {
-    char pathFile[64]; 
-    // 15 + tamanho atual é o tamanho máximo do nome do arquivo
+    char pathFile[64];
     FILE *fptr;
 
-    // Create a file
+    // Monta o caminho completo para o arquivo .txt
     snprintf(pathFile, sizeof(pathFile), "../%s.txt", path);
 
-    fptr = fopen(pathFile, "w"); // Abrindo o arquivo para escrita
+    fptr = fopen(pathFile, "w"); // Abre para escrita (cria novo arquivo)
 
     if (fptr == NULL)
     {
@@ -21,7 +21,8 @@ void criar(int size, char *path)
         return;
     }
 
-    fprintf(fptr, "%d\n", size); // Informando o tamanho da tabela hash na primeira linha
+    // Escreve o tamanho da tabela na primeira linha do arquivo
+    fprintf(fptr, "%d\n", size);
 
     fclose(fptr);
     printf("Tabela hash criada com sucesso em %s\n\n", pathFile);

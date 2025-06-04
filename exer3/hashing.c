@@ -2,14 +2,15 @@
 #include <string.h>
 #include <stdlib.h>
 
+// Gera valor de hash a partir do número USP
 unsigned int hashing(int nUSP)
 {
-
     unsigned int altered = nUSP, digito, resultado = 0;
 
+    // Primos utilizados para ponderação dos dígitos
     int primos[8] = {2, 3, 5, 7, 11, 13, 17, 19};
 
-    // Somando 1 a cada valor, e multiplicando pelo valor primo correspondente.
+    // Etapa 1: somar 1 a cada dígito e multiplicar por um primo específico
     for (int i = 0; i < 8; i++)
     {
         digito = altered % 10;
@@ -17,27 +18,17 @@ unsigned int hashing(int nUSP)
 
         digito = (digito + 1) % 10;
 
-        // Resultado da primeira operação
         resultado += digito * primos[7 - i];
     }
 
-    // Usando unsigned int, precisamos inverter as ordens do bit.
-
-    // Sabemos que trocando de ordem a primeira metade com a segunda, por exemplo, bit 1 -> bit 17.
-    // Logo, só precisamos pegar os bits individualmente e avançar 16 bits.
-
+    // Etapa 2: inverter os 16 bits mais à esquerda com os 16 bits mais à direita
     unsigned int esquerda = (resultado >> 16) & 0xFFFF;
     unsigned int direita = resultado & 0xFFFF;
-
     unsigned int invertido = (direita << 16) | esquerda;
 
-    // Operação de XOR
-
-    // Etapa 3: XOR final entre bits
-
+    // Etapa 3: aplicar XOR entre bits alternados dos dígitos
     unsigned int xor, impar, par, hashed = 2;
     unsigned int temp = invertido;
-
     int odd;
 
     for (int j = 0; j < 4; j++)
@@ -52,33 +43,25 @@ unsigned int hashing(int nUSP)
 
         xor = (impar ^ par);
 
-        // Pegando cada dígito, e aplicando XOR
+        // Aplica XOR com bits alternados dos demais dígitos
         for (int i = 1; temp != 0; i++)
         {
             odd = (i % 2);
 
             if (odd)
-            {
                 digito = ((temp % 10) >> (3 - j)) & 1;
-            }
             else
-            {
                 digito = ((temp % 10) >> (j)) & 1;
-            }
 
             temp /= 10;
-
-            xor = xor ^ digito;
+            xor ^= digito;
         }
 
+        // Monta o valor final bit a bit
         if (hashed == 2)
-        {
             hashed = xor;
-        }
         else
-        {
             hashed = (hashed << 1) | xor;
-        }
     }
 
     return hashed;

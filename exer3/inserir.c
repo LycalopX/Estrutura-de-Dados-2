@@ -7,93 +7,79 @@
 #include <stdlib.h>
 #include <string.h>
 
-// Checa se uma string está contida no começo de outra (útil para rapidamente verificar nUSP)
+// Verifica se 'pre' é prefixo de 'str'
 int prefix(const char *pre, const char *str)
 {
     return strncmp(pre, str, strlen(pre)) == 0;
 }
 
+// Insere alunos na tabela hash a partir de uma string de dados
 int inserir(char *path, char *data)
 {
-
-    // Abrindo arquivo usando path indicado
     FILE *fptr;
     char pathFile[64];
+    snprintf(pathFile, sizeof(pathFile), "../%s.txt", path); // Caminho completo do arquivo
 
-    snprintf(pathFile, sizeof(pathFile), "../%s.txt", path);
-
-    // Array onde memória do arquivo será armazenada para alterações
     char **organizedData;
     int size, takenSpace = 0;
 
-    // Obter informações (se presentes) prévias da hashing
+    // Lê tabela hash atual do arquivo
     readHashing(&organizedData, pathFile, &size, &takenSpace);
 
-    // Inserindo nova informação no arquivo
     char *token = strtok(data, ",");
     int i, newHash = 0;
+    double factor = ((double)(takenSpace)) / ((double)(size)); // Fator de carga inicial
 
-    // Fator de carga
-    double factor = ((double)(takenSpace)) / ((double)(size));
-
+    // Processa entradas em pares de 3: nUSP, nome, curso
     while (token)
     {
-
         factor = ((double)(takenSpace)) / ((double)(size));
+
         char *nUSP = token;
         char *nome = strtok(NULL, ",");
         char *curso = strtok(NULL, ",");
 
-        i = hashing(atoi(nUSP)) % size;
+        int hashIndex = hashing(atoi(nUSP)) % size;
+        i = hashIndex;
 
         if (!nome || !curso)
             break;
 
-            // Colisão / Fc >= 0.9
-        if (organizedData[i] || (factor >= 0.9))
+        // Se posição está ocupada ou fator de carga está alto, reespalhar
+        if (organizedData[i] != NULL || (factor >= 0.9))
         {
-            // Entrada duplicada
-            if (prefix(nUSP, organizedData[i]))
+            if (organizedData[i][0] != '+') // Ignora lápides
             {
-
-                // Entrada Repetida
-                token = strtok(NULL, ","); // Próximo número USP
-                continue;
+                i = reespalhamento(&organizedData, &size, i, factor, &newHash, pathFile);
             }
-
-            i = reespalhamento(&organizedData, &size, i, factor, &newHash, pathFile);
-            // Do stuff to mirror here
         }
 
+        // Armazena o novo aluno no índice calculado
         organizedData[i] = malloc(sizeof(char) * 256);
         if (!organizedData[i])
         {
-            perror("malloc"); /* libere tudo e retorne */
+            perror("malloc");
         }
 
         snprintf(organizedData[i], 256, "%s;%s;%s", nUSP, nome, curso);
 
-        token = strtok(NULL, ","); // Próximo número USP
+        token = strtok(NULL, ",");
         takenSpace++;
     }
 
-    fptr = fopen(pathFile, "w"); // Atualizar arquivo
+    // Regrava o arquivo com os dados atualizados
+    fptr = fopen(pathFile, "w");
     fprintf(fptr, "%d\n", size);
 
-    // Colocar no arquivo e em suas determinadas posições (cada valor hashing)
     for (int i = 0; i < size; i++)
     {
         if (organizedData[i])
-        {
             fprintf(fptr, "%s\n", organizedData[i]);
-        }
         else
-        {
             fprintf(fptr, "\n");
-        }
     }
 
-    // Liberar a memória
+    // Libera memória usada
     fclose(fptr);
 
     for (int i = 0; i < size; ++i)
@@ -103,7 +89,6 @@ int inserir(char *path, char *data)
     }
     free(organizedData);
 
-    printf("Dados inseridos em %s.\n\n", pathFile); // Operação concluída
-
-    return 0; // Sucesso
+    printf("Dados inseridos em %s.\n\n", pathFile);
+    return 0;
 }

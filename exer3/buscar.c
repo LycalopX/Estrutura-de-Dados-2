@@ -3,62 +3,51 @@
 #include "inserir.h"
 #include "readHashing.h"
 
+// Busca linear a partir da posição de hash até encontrar o nUSP ou fim do array
 int buscarHash(int nUSP, char **organizedData, int size)
 {
-    int hash = hashing(nUSP);
-    int i = hash;
-
+    int hash = hashing(nUSP) % size;
     int nusp;
-    sscanf(organizedData[hash], "%d;", &nusp);
 
-    if (nusp != nUSP)
+    for (int i = hash; i < size; i++)
     {
-        while (i < size)
+        sscanf(organizedData[i], "%d;", &nusp);
+        if (nusp == nUSP)
         {
-            sscanf(organizedData[i], "%d;", &nusp);
-            if (nUSP == nusp)
-            {
-                break;
-            }
-            i++;
-        }
-        if (size == i)
-        {
-            printf("Aluno NUSP %d não foi encontrado.\n", nUSP);
-            return -1;
+            return i; // Encontrado
         }
     }
 
-    return i;
-};
+    printf("Aluno NUSP %d não foi encontrado.\n", nUSP);
+    return -1; // Não encontrado
+}
 
+// Função principal da busca, chamada pela main
 void buscar(int argc, char **argv)
 {
     char *path = argv[2];
     char *nUSPs = argv[3];
-
     char *token = strtok(nUSPs, ",");
 
     char pathFile[64], **organizedData;
     int size, takenSpace = 0, nUSP, index;
-    // 15 + tamanho atual é o tamanho máximo do nome do arquivo
 
-    snprintf(pathFile, sizeof(pathFile), "../%s.txt", path); // Salvando na pasta storage.
+    snprintf(pathFile, sizeof(pathFile), "../%s.txt", path); // Define o caminho do arquivo
 
-    readHashing(&organizedData, pathFile, &size, &takenSpace);
+    readHashing(&organizedData, pathFile, &size, &takenSpace); // Lê dados do arquivo para memória
 
+    // Processa cada NUSP fornecido na linha de comando
     while (token)
     {
         nUSP = atoi(token);
-
         index = buscarHash(nUSP, organizedData, size);
 
-        if (index > 0)
+        if (index >= 0)
         {
-            printf("%s\n", organizedData[index]);
+            printf("%s\n", organizedData[index]); // Exibe dados do aluno encontrado
         }
 
-        token = strtok(NULL, ","); // Próximo número USP
+        token = strtok(NULL, ","); // Próximo NUSP
     }
 
     printf("Procura terminada.\n\n");

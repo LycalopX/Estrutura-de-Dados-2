@@ -1,15 +1,10 @@
 #include "buscar.h"
 #include "readHashing.h"
 
+// Atualiza o arquivo original com os dados modificados da tabela hash
 void updateFile(char **organizedData, char *path)
 {
-
-    // Precisamos alterar no arquivo...
-    FILE *fptr;
-
-    fptr = fopen(path, "r"); // Abrindo o arquivo para escrita no final
-
-    // Arquivo intermediário
+    FILE *fptr = fopen(path, "r");
     FILE *temporario = fopen("../temporario.txt", "w");
 
     if (!temporario)
@@ -19,12 +14,12 @@ void updateFile(char **organizedData, char *path)
         return;
     }
 
-    // Ler e reutilizar a primeira linha do original
+    // Copia a primeira linha (tamanho da tabela)
     char buffer[10];
-    fgets(buffer, 10, fptr); // copia tamanho da tabela
+    fgets(buffer, 10, fptr);
     fputs(buffer, temporario);
 
-    // Copia array com alterações feitas
+    // Escreve os dados atualizados no arquivo temporário
     for (int i = 0; organizedData[i] != NULL; i++)
     {
         fputs(organizedData[i], temporario);
@@ -34,43 +29,46 @@ void updateFile(char **organizedData, char *path)
     fclose(fptr);
     fclose(temporario);
 
-    // Substituir o arquivo original pelo temporário
+    // Substitui o arquivo original pelo novo com os dados atualizados
     remove(path);
     rename("../temporario.txt", path);
-
-    return;
 }
 
+// Remove os alunos indicados pelos NUSPs passados como argumento
 void remover(int argc, char **argv)
 {
     char *path = argv[2];
     char *nUSPs = argv[3];
-
     char *token = strtok(nUSPs, ",");
 
     char pathFile[64], **organizedData;
     int size, takenSpace = 0, nUSP, index;
-    // 15 + tamanho atual é o tamanho máximo do nome do arquivo
 
-    snprintf(pathFile, sizeof(pathFile), "../%s.txt", path); // Salvando na pasta storage.
+    snprintf(pathFile, sizeof(pathFile), "../%s.txt", path); // Caminho completo do arquivo
 
+    // Lê tabela atual para a memória
     readHashing(&organizedData, pathFile, &size, &takenSpace);
 
+    // Para cada NUSP passado, busca e marca com lápide
     while (token)
     {
         nUSP = atoi(token);
-
         index = buscarHash(nUSP, organizedData, size);
 
-        if (index > 0)
+        if (index >= 0)
         {
             printf("Aluno NUSP %d removido\n", nUSP);
-            // fazer lápide
+
+            // Marca a posição com uma lápide '+'
+            free(organizedData[index]);
+            organizedData[index] = (char *)malloc(256 * sizeof(char));
+            organizedData[index][0] = '+';
         }
 
-        token = strtok(NULL, ","); // Próximo número USP
+        token = strtok(NULL, ",");
     }
 
+    // Salva a tabela modificada no arquivo
     updateFile(organizedData, pathFile);
 
     printf("Usuários solicitados removidos.\n\n");

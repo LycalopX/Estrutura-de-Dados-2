@@ -1,20 +1,19 @@
 #include "readHashing.h"
 
-// Serve para transmitir dados do arquivo para array de modificação
+// Lê os dados da tabela hash do arquivo e armazena em memória
 void readHashing(char ***organizedData, char *pathFile, int *size, int *takenSpace)
 {
-
     FILE *fptr = fopen(pathFile, "r");
 
     if (fptr == NULL)
     {
         printf("Erro ao abrir o arquivo em %s\n", pathFile);
-        return; // Erro ao abrir o arquivo
+        return;
     }
 
-    char buffer[256]; // ou até 512, se quiser mais folga
+    char buffer[256];
 
-    // Reads and skips a line
+    // Lê a primeira linha: tamanho da tabela
     if (!fgets(buffer, sizeof(buffer), fptr))
     {
         fclose(fptr);
@@ -23,8 +22,8 @@ void readHashing(char ***organizedData, char *pathFile, int *size, int *takenSpa
 
     (*size) = atoi(buffer);
 
+    // Aloca array de ponteiros para armazenar os dados da tabela
     *organizedData = calloc(*size, sizeof(char *));
-
     if (!*organizedData)
     {
         perror("calloc");
@@ -32,6 +31,7 @@ void readHashing(char ***organizedData, char *pathFile, int *size, int *takenSpa
         return;
     }
 
+    // Lê cada linha do arquivo e armazena no array
     for (int i = 0; i < (*size); i++)
     {
         if (fgets(buffer, sizeof(buffer), fptr))
@@ -42,10 +42,11 @@ void readHashing(char ***organizedData, char *pathFile, int *size, int *takenSpa
                 perror("malloc");
                 continue;
             }
+
             strcpy((*organizedData)[i], buffer);
             (*takenSpace)++;
 
-            // remove newline final se houver
+            // Remove o '\n' do final, se houver (linha vazia não conta como ocupada)
             size_t len = strlen((*organizedData)[i]);
             if (len > 0 && (*organizedData)[i][len - 1] == '\n')
             {
