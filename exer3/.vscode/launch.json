@@ -1,0 +1,16 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug main (build/main)",
+            "type": "lldb",  // ou "cppdbg" se estiver usando o GDB no Linux/WSL
+            "request": "launch",
+            "program": "${workspaceFolder}/build/main",
+            "args": [], // argumentos que você deseja passar, ex: ["inserir", "hash", "dados..."]
+            "cwd": "${workspaceFolder}",
+            "stopAtEntry": false,
+            "console": "integratedTerminal",
+            "preLaunchTask": "build"
+        }
+    ]
+}

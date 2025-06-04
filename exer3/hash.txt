@@ -1,0 +1,12 @@
+11
+
+12345678;Pudim de Passas;Petróleo
+15489730;Thales Vasconcelos Aguiar de Oliveira;Computação
++
++
+
+23456789;Olimar;Gastronomia
+
+
+
+

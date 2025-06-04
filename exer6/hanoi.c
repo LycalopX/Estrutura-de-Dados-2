@@ -79,4 +79,12 @@ void setUp(int *weights, int count)
     printf("\n");
 
     printf("\nPeso movimentado: %du \nNúmero de movimentos: %d\n\n", movedWeight, numberOfMoves);
+
+    // Limpar a memória alocada
+    free(pinos[0].discos);
+    free(pinos[1].discos);
+    free(pinos[2].discos);
+    free(pinos);
+    pinos = NULL;
+    weights = NULL;
 }
