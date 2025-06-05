@@ -1,9 +1,9 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-#include "busca.c"
-#include "print.c"
-#include "argumentos.c"
+#include "busca.h"
+#include "print.h"
+#include "argumentos.h"
 
 
 int main(int argc, char *argv[]) {

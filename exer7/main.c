@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "solver.c"
+#include "solver.h"
 
 int main(int argc, char *argv[]) {
     if(argc == 2){

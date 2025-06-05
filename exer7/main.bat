@@ -1,3 +1,3 @@
-gcc main.c -o programa.exe
+gcc main.c solver.c -o programa.exe
 programa.exe %*
 pause
