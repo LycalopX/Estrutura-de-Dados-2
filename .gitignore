@@ -1,3 +1,4 @@
-./exer6/build
+./exer6/build*
+./exer3/build*
 ./exer5/*.o
 ./exer1/*.o
