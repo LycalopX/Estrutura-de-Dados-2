@@ -41,4 +41,9 @@ int EquationTryFindTargetRecursive(const Equation *equation, int target, int *st
 // Returns 0 if not found
 int EquationTryFindTarget(const Equation *equation, int target, unsigned *calls);
 
+// Tries to find the target value from permutations
+// Returns 1 if found
+// Returns 0 if not found
+int EquationTryFindTargetFromPermutations(Equation* eq, int target, unsigned* calls, int** permutations, unsigned total);
+
 #endif

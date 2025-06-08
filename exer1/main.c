@@ -16,7 +16,6 @@
 // MESSAGES
 #define NO_COMBINATION_FOUND_MESSAGE "Não foi possível formar o valor alvo\n"
 
-
 int main(int argc, char *argv[]) {
     // Validate arguments count
     if(argc > 3){
@@ -62,6 +61,11 @@ int main(int argc, char *argv[]) {
     unsigned operationIndex[inputsOperaionsLength];
     ResetUnsignedArray(operationIndex, inputsOperaionsLength);
 
+    unsigned inputsPermutationsCount = Factorial(inputsLength);
+    int *permutations[inputsPermutationsCount];
+    FillPermutationsPointers(permutations, 0, inputsPermutationsCount);
+    GetPermutations(inputs, inputsLength, permutations);
+
     Equation equation = {
         .inputs = inputs,
         .inputsLength = inputsLength,
@@ -72,12 +76,11 @@ int main(int argc, char *argv[]) {
     };
 
     unsigned calls = 0;
-    if(EquationTryFindTarget(&equation, target, &calls)){
+    if(EquationTryFindTargetFromPermutations(&equation, target, &calls, permutations, inputsPermutationsCount)){
         PrintEquation(&equation);
         printf("\n");
         printf("%d\n", calls);
-    }
-    else{
+    } else {
         printf("%d\n", calls);
         printf(NO_COMBINATION_FOUND_MESSAGE);
     }
