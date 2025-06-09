@@ -85,9 +85,6 @@ void operacao_inserir(const char *caminho, const char *dados)
     HashT *tabela = carregarHash(caminho);
     if (!tabela)
     {
-        // Se a tabela não pode ser carregada, talvez o arquivo não exista.
-        // Criamos uma com tamanho padrão para prosseguir.
-        // Supondo um tamanho padrão de 11, conforme o teste.
         tabela = criarHash(11, caminho);
         if (!tabela) {
              fprintf(stderr, "Erro: Nao foi possivel criar uma nova tabela para '%s'.\n", caminho);
