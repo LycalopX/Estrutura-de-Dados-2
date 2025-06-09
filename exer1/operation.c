@@ -27,7 +27,7 @@ int Mul(int a, int b, int *state) {
 
 int Div(int a, int b, int *state) {
     // Division by zero
-    if (b == 0) {
+    if (b == 0 || a % b != 0) {
         *state = 0;
         return 1; 
     }
