@@ -1,4 +1,5 @@
 ./exerc6/build*
 ./exerc3/build*
-
+./exerc5/*.o
+./exerc1/*.o
 ./exerc4/*.txt
