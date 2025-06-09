@@ -3,7 +3,7 @@
 #include <string.h>
 #include "moveDisk.h"
 
-static inline void swapDisk(struct peso *disk1, struct peso *disk2)
+void swapDisk(struct peso *disk1, struct peso *disk2)
 {
 
     // Armazenar o valor do vetor a ser trocado

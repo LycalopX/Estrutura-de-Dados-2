@@ -1,3 +1,4 @@
+#!/bin/bash
 # Archive: runProject.sh 
 # Uso: ./runProject.sh [args]  # Make run with args
 #      ./runProject.sh         # Make run with default tests

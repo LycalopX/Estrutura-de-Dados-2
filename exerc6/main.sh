@@ -1,19 +1,25 @@
 #!/bin/bash
-set -e
+set -e  # Para o script se qualquer comando falhar
 
-rm -rf build
-mkdir build
-cd build
-cmake ..
-cmake --build .
+# Compilador e flags
+CC=gcc
+CFLAGS="-std=c99 -Wall -Wextra -g"
+TARGET="main"
 
-# If no arguments, run two predefined test cases
-if [ $# -eq 0 ]; then
-    echo "Running default test case: Pesos 8 1 5 com quicksort"
+# Compilar todos os .c em .o
+for src in *.c; do
+    obj="${src%.c}.o"
+    $CC $CFLAGS -c "$src" -o "$obj"
+done
+
+# Linkar tudo em um executável
+$CC $CFLAGS -o "$TARGET" *.o
+
+# Executar o programa
+if [ $# -gt 0 ]; then
+    ./main "$@"
+else
     ./main quicksort 8 1 5
 
-    echo "Running default test case: Pesos 3 9 2 4 com heapsort"
     ./main heapsort 3 9 2 4
-else
-    ./main "$@"
 fi
