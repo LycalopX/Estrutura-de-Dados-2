@@ -1,0 +1,3 @@
+/Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer3/build/CMakeFiles/main.dir
+/Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer3/build/CMakeFiles/edit_cache.dir
+/Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer3/build/CMakeFiles/rebuild_cache.dir

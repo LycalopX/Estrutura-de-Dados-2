@@ -1,7 +1,7 @@
 #ifndef solver_h_INCLUDED
 #define solver_h_INCLUDED
 
-void iniciar(int n);
+void inicializar(int n);
 
 int resolver(int n, int col, int *rainhas, int *linUsada, int *diag1Usada, int *diag2Usada);
 

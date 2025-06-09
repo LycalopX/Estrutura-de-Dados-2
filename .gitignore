@@ -2,3 +2,4 @@
 ./exer3/build*
 ./exer5/*.o
 ./exer1/*.o
+./exer4/*.txt
