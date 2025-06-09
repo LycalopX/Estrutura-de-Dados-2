@@ -82,3 +82,25 @@ int EquationTryFindTarget(const Equation *equation, int target, unsigned *calls)
     int state = 1;
     return EquationTryFindTargetRecursive(equation, target, &state, calls);
 }
+
+int EquationTryFindTargetFromPermutationsRecursive(Equation* eq, int target, unsigned* calls, int** permutations, unsigned total, unsigned index) {
+    if(index >= total) {
+        return 0;
+    }
+
+    eq->inputs = permutations[index];
+    
+    if(EquationTryFindTarget(eq, target, calls)) {
+        return 1;
+    }
+
+    return EquationTryFindTargetFromPermutationsRecursive(eq, target, calls, permutations, total, index + 1);
+}
+
+int EquationTryFindTargetFromPermutations(Equation* eq, int target, unsigned* calls, int** permutations, unsigned total) {
+    if(eq == NULL || permutations == NULL || total == 0) {
+        return 0;
+    }
+    
+    return EquationTryFindTargetFromPermutationsRecursive(eq, target, calls, permutations, total, 0);
+}
