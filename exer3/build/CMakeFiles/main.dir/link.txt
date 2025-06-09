@@ -1,0 +1,1 @@
+/usr/bin/cc -g -arch arm64 -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/main.dir/buscar.c.o CMakeFiles/main.dir/criar.c.o CMakeFiles/main.dir/hashing.c.o CMakeFiles/main.dir/inserir.c.o CMakeFiles/main.dir/main.c.o CMakeFiles/main.dir/readHashing.c.o CMakeFiles/main.dir/reespalhamento.c.o CMakeFiles/main.dir/remover.c.o -o main
