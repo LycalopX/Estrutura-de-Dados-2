@@ -10,7 +10,8 @@ typedef struct
     int pos[15]; // Armazena a posição das rainhas na solução
 } Solucao;
 
-Solucao solucoes[50000]; // Alocando espaço para armazenar até 50.000 soluções (n = 14) para evitar estouro de memória
+Solucao *solucoes = NULL;
+int capacidadeSolucoes = 0;
 
 void rotacionar90(int *dest, int *orig, int n)
 { // Rotaciona a matriz 90 graus no sentido horário
@@ -61,6 +62,25 @@ int verificar_solucao(int *rainhas, int n)
         }
         rotacionar90(rot, temp, n);
         memcpy(temp, rot, n * sizeof(int));
+    }
+
+    // Verifica se o vetor de soluções está cheio
+    if (totalSolucoes == capacidadeSolucoes) {
+        int novaCapacidade;
+        // Se o vetor de soluções está cheio, dobra a capacidade
+        if (capacidadeSolucoes == 0) {
+            novaCapacidade = 10;
+        } else {
+            novaCapacidade = capacidadeSolucoes * 2;
+        }
+        Solucao *temp = realloc(solucoes, novaCapacidade * sizeof(Solucao));
+
+        if (temp == NULL) {
+            printf("Falha ao realocar memoria.\n");
+            return 0;
+        }
+        solucoes = temp;
+        capacidadeSolucoes = novaCapacidade;
     }
 
     // Salva a nova solução encontrada
@@ -122,6 +142,15 @@ void inicializar(int n)
     memset(diag2Usada, 0, sizeof(int) * (2 * n));
     chamadas = 0;
     totalSolucoes = 0;
+
+    // Aloca memória para as soluções
+    capacidadeSolucoes = 10; // Capacidade inicial para armazenar soluções
+    solucoes = (Solucao *) malloc(capacidadeSolucoes * sizeof(Solucao));
+    if (solucoes == NULL) {
+        printf("Falha ao alocar memoria.\n");
+        return;
+    }
+
     resolver(n, 0, rainhas, linUsada, diag1Usada, diag2Usada);
 
     if (totalSolucoes == 0)
@@ -133,4 +162,10 @@ void inicializar(int n)
         printf("Total de chamadas recursivas: %d\n", chamadas);
         printf("Total de soluções para N = %d: %d\n", n, totalSolucoes);
     }
+
+    // Libera a memória alocada para as soluções
+    free(solucoes);
+    solucoes = NULL;
+    capacidadeSolucoes = 0;
+    return;
 }
