@@ -1,75 +1,70 @@
+#include "remover.h"
 #include "buscar.h"
 #include "readHashing.h"
+#include "aluno.h" // Use the Aluno struct
 
-// Atualiza o arquivo original com os dados modificados da tabela hash
-void updateFile(char **organizedData, char *path)
+/**
+ * @brief Updates the data file from the modified Aluno struct array.
+ */
+void updateFile(Aluno *organizedData, int size, char *path)
 {
-    FILE *fptr = fopen(path, "r");
-    FILE *temporario = fopen("../temporario.txt", "w");
-
-    if (!temporario)
+    FILE *fptr = fopen(path, "w");
+    if (!fptr)
     {
-        perror("Erro ao criar o arquivo temporário");
-        fclose(fptr);
+        perror("Erro ao abrir arquivo para escrita");
         return;
     }
 
-    // Copia a primeira linha (tamanho da tabela)
-    char buffer[10];
-    fgets(buffer, 10, fptr);
-    fputs(buffer, temporario);
+    fprintf(fptr, "%d\n", size); // Write the table size.
 
-    // Escreve os dados atualizados no arquivo temporário
-    for (int i = 0; organizedData[i] != NULL; i++)
+    // Write each entry to the file based on its state.
+    for (int i = 0; i < size; i++)
     {
-        fputs(organizedData[i], temporario);
-        fputs("\n", temporario);
+        if (organizedData[i].state == 0) // Occupied
+            fprintf(fptr, "%d;%s;%s\n", organizedData[i].nUSP, organizedData[i].nome, organizedData[i].curso);
+        else if (organizedData[i].state == 2) // Tombstone
+            fprintf(fptr, "+\n");
+        else // Empty
+            fprintf(fptr, "\n");
     }
-
     fclose(fptr);
-    fclose(temporario);
-
-    // Substitui o arquivo original pelo novo com os dados atualizados
-    remove(path);
-    rename("../temporario.txt", path);
 }
 
-// Remove os alunos indicados pelos NUSPs passados como argumento
+/**
+ * @brief Removes students by marking their entries as tombstones.
+ */
 void remover(int argc, char **argv)
 {
     char *path = argv[2];
     char *nUSPs = argv[3];
     char *token = strtok(nUSPs, ",");
 
-    char pathFile[64], **organizedData;
-    int size, takenSpace = 0, nUSP, index;
+    char pathFile[64];
+    Aluno *organizedData;
+    int size, takenSpace = 0;
 
-    snprintf(pathFile, sizeof(pathFile), "../%s.txt", path); // Caminho completo do arquivo
-
-    // Lê tabela atual para a memória
+    snprintf(pathFile, sizeof(pathFile), "./%s.txt", path);
     readHashing(&organizedData, pathFile, &size, &takenSpace);
 
-    // Para cada NUSP passado, busca e marca com lápide
     while (token)
     {
-        nUSP = atoi(token);
-        index = buscarHash(nUSP, organizedData, size);
+        int nUSP = atoi(token);
+        // Passa o takenSpace para a função de busca
+        int index = buscarHash(nUSP, organizedData, size, takenSpace);
 
         if (index >= 0)
         {
             printf("Aluno NUSP %d removido\n", nUSP);
-
-            // Marca a posição com uma lápide '+'
-            free(organizedData[index]);
-            organizedData[index] = (char *)malloc(256 * sizeof(char));
-            organizedData[index][0] = '+';
+            // Mark the slot with a tombstone instead of freeing memory.
+            organizedData[index].state = 2;
         }
 
         token = strtok(NULL, ",");
     }
 
-    // Salva a tabela modificada no arquivo
-    updateFile(organizedData, pathFile);
+    // Save the modified table back to the file.
+    updateFile(organizedData, size, pathFile);
+    free(organizedData);
 
     printf("Usuários solicitados removidos.\n\n");
 }

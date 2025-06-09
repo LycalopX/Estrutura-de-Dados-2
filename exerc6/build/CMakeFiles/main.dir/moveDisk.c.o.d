@@ -1,5 +1,5 @@
 CMakeFiles/main.dir/moveDisk.c.o: \
-  /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/moveDisk.c \
+  /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exerc6/moveDisk.c \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/stdio.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/_stdio.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sys/cdefs.h \
@@ -84,5 +84,5 @@ CMakeFiles/main.dir/moveDisk.c.o: \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/strings.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_strings.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/secure/_string.h \
-  /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/moveDisk.h \
-  /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/hanoi.h
+  /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exerc6/moveDisk.h \
+  /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exerc6/hanoi.h

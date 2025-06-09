@@ -2,91 +2,76 @@
 #include "hashing.h"
 #include "reespalhamento.h"
 #include "readHashing.h"
+#include "aluno.h" // Use the Aluno struct
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
-// Verifica se 'pre' é prefixo de 'str'
-int prefix(const char *pre, const char *str)
-{
-    return strncmp(pre, str, strlen(pre)) == 0;
-}
-
-// Insere alunos na tabela hash a partir de uma string de dados
+/**
+ * @brief Inserts new students into the hash table.
+ */
 int inserir(char *path, char *data)
 {
-    FILE *fptr;
     char pathFile[64];
-    snprintf(pathFile, sizeof(pathFile), "../%s.txt", path); // Caminho completo do arquivo
+    snprintf(pathFile, sizeof(pathFile), "./%s.txt", path);
 
-    char **organizedData;
+    Aluno *organizedData;
     int size, takenSpace = 0;
 
-    // Lê tabela hash atual do arquivo
     readHashing(&organizedData, pathFile, &size, &takenSpace);
 
     char *token = strtok(data, ",");
     int i, newHash = 0;
-    double factor = ((double)(takenSpace)) / ((double)(size)); // Fator de carga inicial
+    double factor;
 
-    // Processa entradas em pares de 3: nUSP, nome, curso
     while (token)
     {
         factor = ((double)(takenSpace)) / ((double)(size));
 
-        char *nUSP = token;
+        char *nUSP_str = token;
         char *nome = strtok(NULL, ",");
         char *curso = strtok(NULL, ",");
-
-        int hashIndex = hashing(atoi(nUSP)) % size;
-        i = hashIndex;
 
         if (!nome || !curso)
             break;
 
-        // Se posição está ocupada ou fator de carga está alto, reespalhar
-        if (organizedData[i] != NULL || (factor >= 0.9))
-        {
-            if (organizedData[i][0] != '+') // Ignora lápides
-            {
-                i = reespalhamento(&organizedData, &size, i, factor, &newHash, pathFile);
-            }
-        }
+        int nUSP = atoi(nUSP_str);
+        int hashIndex = hashing(nUSP) % size;
+        i = hashIndex;
 
-        // Armazena o novo aluno no índice calculado
-        organizedData[i] = malloc(sizeof(char) * 256);
-        if (!organizedData[i])
+        if (organizedData[i].state == 0 || (factor >= 0.9))
         {
-            perror("malloc");
+            i = reespalhamento(&organizedData, &size, i, factor, &newHash, pathFile, nUSP);
         }
-
-        snprintf(organizedData[i], 256, "%s;%s;%s", nUSP, nome, curso);
+        
+        // Populate the struct fields with the new student's data.
+        organizedData[i].nUSP = nUSP;
+        strncpy(organizedData[i].nome, nome, sizeof(organizedData[i].nome) - 1);
+        organizedData[i].nome[sizeof(organizedData[i].nome) - 1] = '\0';
+        strncpy(organizedData[i].curso, curso, sizeof(organizedData[i].curso) - 1);
+        organizedData[i].curso[sizeof(organizedData[i].curso) - 1] = '\0';
+        organizedData[i].state = 0; // Mark as occupied.
 
         token = strtok(NULL, ",");
         takenSpace++;
     }
 
-    // Regrava o arquivo com os dados atualizados
-    fptr = fopen(pathFile, "w");
+    // Rewrite the file with updated data from the struct array.
+    FILE *fptr = fopen(pathFile, "w");
     fprintf(fptr, "%d\n", size);
-
-    for (int i = 0; i < size; i++)
+    for (int j = 0; j < size; j++)
     {
-        if (organizedData[i])
-            fprintf(fptr, "%s\n", organizedData[i]);
-        else
+        if (organizedData[j].state == 0) // Occupied
+            fprintf(fptr, "%d;%s;%s\n", organizedData[j].nUSP, organizedData[j].nome, organizedData[j].curso);
+        else if (organizedData[j].state == 2) // Tombstone
+            fprintf(fptr, "+\n");
+        else // Empty
             fprintf(fptr, "\n");
     }
-
-    // Libera memória usada
     fclose(fptr);
 
-    for (int i = 0; i < size; ++i)
-    {
-        if (organizedData[i])
-            free(organizedData[i]);
-    }
+    // Free the single block of memory for the array.
     free(organizedData);
 
     printf("Dados inseridos em %s.\n\n", pathFile);

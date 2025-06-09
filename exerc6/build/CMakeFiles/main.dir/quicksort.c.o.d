@@ -1,7 +1,7 @@
 CMakeFiles/main.dir/quicksort.c.o: \
-  /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/quicksort.c \
-  /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/quicksort.h \
-  /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/swap.h \
+  /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exerc6/quicksort.c \
+  /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exerc6/quicksort.h \
+  /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exerc6/swap.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/stdio.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/_stdio.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sys/cdefs.h \

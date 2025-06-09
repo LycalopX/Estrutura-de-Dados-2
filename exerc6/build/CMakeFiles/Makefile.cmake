@@ -7,7 +7,7 @@ set(CMAKE_DEPENDS_GENERATOR "Unix Makefiles")
 # The top level Makefile was generated from the following files:
 set(CMAKE_MAKEFILE_DEPENDS
   "CMakeCache.txt"
-  "/Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/CMakeLists.txt"
+  "/Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exerc6/CMakeLists.txt"
   "CMakeFiles/4.0.2/CMakeCCompiler.cmake"
   "CMakeFiles/4.0.2/CMakeSystem.cmake"
   "/opt/homebrew/share/cmake/Modules/CMakeCCompiler.cmake.in"

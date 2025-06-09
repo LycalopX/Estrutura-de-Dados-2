@@ -1,4 +1,5 @@
 #include "criar.h"
+#include "primo.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -11,7 +12,7 @@ void criar(int size, char *path)
     FILE *fptr;
 
     // Monta o caminho completo para o arquivo .txt
-    snprintf(pathFile, sizeof(pathFile), "../%s.txt", path);
+    snprintf(pathFile, sizeof(pathFile), "./%s.txt", path);
 
     fptr = fopen(pathFile, "w"); // Abre para escrita (cria novo arquivo)
 
@@ -22,7 +23,7 @@ void criar(int size, char *path)
     }
 
     // Escreve o tamanho da tabela na primeira linha do arquivo
-    fprintf(fptr, "%d\n", size);
+    fprintf(fptr, "%d\n", encontrarPrimo(size));
 
     fclose(fptr);
     printf("Tabela hash criada com sucesso em %s\n\n", pathFile);

@@ -1,5 +1,5 @@
 CMakeFiles/main.dir/hanoi.c.o: \
-  /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/hanoi.c \
+  /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exerc6/hanoi.c \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/stdio.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/_stdio.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sys/cdefs.h \
@@ -78,6 +78,6 @@ CMakeFiles/main.dir/hanoi.c.o: \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/malloc/_ptrcheck.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sys/_types/_dev_t.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sys/_types/_mode_t.h \
-  /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/hanoi.h \
-  /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/moveDisk.h \
-  /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exer6/printArray.h
+  /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exerc6/hanoi.h \
+  /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exerc6/moveDisk.h \
+  /Users/alexweber/Documents/GitHub/Estrutura-de-Dados-2/exerc6/printArray.h
