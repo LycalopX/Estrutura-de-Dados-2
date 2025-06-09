@@ -1,265 +1,258 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "hash.h"       //  Definições da tabela hash
-#include "aluno.h"      // Struct Aluno
+#include "hash.h"
+#include "aluno.h"
 
-    unsigned int rotacionar13Bits(unsigned int valor) { // Função auxiliar local: Rotação de 13 bits à esquerda
-        const int BITS_INT = 32; // Assumindo int de 32 bits
-        return (valor << 13) | (valor >> (BITS_INT - 13));
+// Rotaciona os bits de um valor unsigned int 13 posiÃ§Ãµes para a esquerda.
+unsigned int rotacionar13Bits(unsigned int valor) {
+    const int BITS_INT = 32; // Assumindo int de 32 bits
+    return (valor << 13) | (valor >> (BITS_INT - 13));
+}
+
+// Calcula o Ã­ndice hash para uma string (nome do aluno).
+int funcaoHash(const char* nome, int tamanhoTabela) {
+    if (nome == NULL || tamanhoTabela <= 0) {
+        return -1;
     }
 
-    int funcaoHash(const char* nome, int tamanhoTabela) { // Função hash principal
-        if (nome == NULL || tamanhoTabela <= 0) {
-            return -1; // Tratamento de erro
-        }
-
-        unsigned int h1 = 0; // Assume 0 como valor inicial
-
-        for (int i = 0; nome[i] != '\0'; i++) { // Laço de repetição para cada caracter do nome
-            h1 += (unsigned char)nome[i] << (i % 8); //COnversão dos caracteres e deslocamento inicial de bits
-        }
-
-        h1 = rotacionar13Bits(h1); // Deslocamento de bits do valor total
-
-        return h1 % tamanhoTabela; // Compressão na tabela
+    unsigned int h1 = 0;
+    for (int i = 0; nome[i] != '\0'; i++) {
+        h1 += (unsigned char)nome[i] << (i % 8);
     }
 
-    void salvarHash(HashT* h, const char* caminho) {  // Função auxiliar para salvar as atualizações da tabela
-        FILE* arquivo = fopen(caminho, "w");
-        if (!arquivo) {
-            printf("Erro ao abrir arquivo para salvar.\n"); // Tratamento de erro
-            return;
-        }
+    h1 = rotacionar13Bits(h1);
 
-        for (int i = 0; i < h->tamanho; i++) {
-            fprintf(arquivo, "%d: ", i); // Escreve o índice para manter um padrão na saída
-            Node* atual = h->tabela[i];
-            while (atual != NULL) {
-                fprintf(arquivo, "%s:%d:%s", atual->novo.nome, atual->novo.nusp, atual->novo.curso); // Formato para saída Nome:Nusp:Curso
-                atual = atual->prox;
-                if (atual != NULL) fprintf(arquivo, ", "); // Delimitador entre alunos ","
+    return h1 % tamanhoTabela;
+}
+
+// Salva o conteÃºdo da tabela hash em um arquivo de texto.
+void salvarHash(HashT* h, const char* caminho) {
+    FILE* arquivo = fopen(caminho, "w");
+    if (!arquivo) {
+        fprintf(stderr, "Erro: Nao foi possivel abrir o arquivo '%s' para escrita.\n", caminho);
+        return;
+    }
+
+    for (int i = 0; i < h->tamanho; i++) {
+        fprintf(arquivo, "%d:", i);
+        Node* atual = h->tabela[i];
+        if (atual != NULL) {
+             fprintf(arquivo, " "); // Adiciona um espaÃ§o apÃ³s o ':' se houver nÃ³s
+        }
+        while (atual != NULL) {
+            fprintf(arquivo, "%s:%d:%s", atual->novo.nome, atual->novo.nusp, atual->novo.curso);
+            atual = atual->prox;
+            if (atual != NULL) {
+                fprintf(arquivo, ", ");
             }
-            fprintf(arquivo, "\n"); // Nova linha para o próximo índice
         }
-        fclose(arquivo);
+        fprintf(arquivo, "\n");
     }
+    fclose(arquivo);
+}
 
- HashT* carregarHash(const char* caminhoArquivo) { // Função que garante o uso da hash atualizada a partir do arquivo txt
+// Carrega uma tabela hash a partir de um arquivo, preservando a ordem dos nÃ³s.
+HashT* carregarHash(const char* caminhoArquivo) {
     FILE* arquivo = fopen(caminhoArquivo, "r");
     if (!arquivo) {
-        printf("Erro ao abrir arquivo para leitura.\n"); // Tratamento de erro inicial
+        fprintf(stderr, "Erro: Nao foi possivel abrir o arquivo '%s' para leitura.\n", caminhoArquivo);
         return NULL;
     }
 
-    int tamanho = 0;
-    char linha[256];
-    while (fgets(linha, sizeof(linha), arquivo)) { // Contagem das linhas para determinar o tamanho
-        tamanho++;
+    // Passada 1: Determinar o tamanho correto da tabela pelo maior Ã­ndice no arquivo.
+    int max_indice = -1;
+    char linha[512];
+    while (fgets(linha, sizeof(linha), arquivo)) {
+        int indice_atual;
+        if (sscanf(linha, "%d:", &indice_atual) == 1) {
+            if (indice_atual > max_indice) {
+                max_indice = indice_atual;
+            }
+        }
     }
+    
+    int tamanho_tabela = (max_indice > -1) ? max_indice + 1 : 10;
     rewind(arquivo);
 
-    HashT* tabela = (HashT*)malloc(sizeof(HashT)); // Cria tabela vazia SEM salvar (usando função interna)
-    tabela->tamanho = tamanho;
-    tabela->tabela = (Node**)calloc(tamanho, sizeof(Node*));
+    // Passada 2: Alocar e preencher a tabela.
+    HashT* tabela = (HashT*)malloc(sizeof(HashT));
+    tabela->tamanho = tamanho_tabela;
+    tabela->tabela = (Node**)calloc(tamanho_tabela, sizeof(Node*));
 
-    while (fgets(linha, sizeof(linha), arquivo)) { // Processa cada linha do arquivo
-        char* token = strtok(linha, ":"); // Extrai o índice considerando o padrão adotado para o arquivo
-        if (!token) continue;
-        int indice = atoi(token);
-        char* alunos = strtok(NULL, "\n"); // Processa os alunos nesta linha
-        if (!alunos) continue;
-        char* aluno = strtok(alunos, ",");
-        while (aluno) {
+    if (!tabela->tabela) {
+        fprintf(stderr, "Erro: Falha na alocacao da tabela hash ao carregar.\n");
+        free(tabela);
+        fclose(arquivo);
+        return NULL;
+    }
 
-            while (*aluno == ' ') aluno++; // Remove espaços iniciais
-            char* nome = strtok(aluno, ":"); // Extrai os campos separados por :
-            char* nusp = strtok(NULL, ":");
-            char* curso = strtok(NULL, ":");
+    while (fgets(linha, sizeof(linha), arquivo)) {
+        char* separador_indice = strchr(linha, ':');
+        if (!separador_indice) continue;
 
-            if (nome && nusp && curso) {
-                // Cria e insere o aluno diretamente
-                Node* novo = (Node*)malloc(sizeof(Node));
-                novo->novo.nome = strdup(nome);
-                novo->novo.nusp = atoi(nusp);
-                novo->novo.curso = strdup(curso);
-                novo->prox = tabela->tabela[indice];
-                tabela->tabela[indice] = novo;
+        *separador_indice = '\0';
+        int indice = atoi(linha);
+        
+        if (indice < 0 || indice >= tamanho_tabela) continue;
+
+        char* alunos_str = separador_indice + 1;
+        char* aluno_tok = strtok(alunos_str, ",");
+        
+        Node* cauda = NULL; 
+
+        while (aluno_tok != NULL) {
+            char* nome = strtok(aluno_tok, ":");
+            char* nusp_str = strtok(NULL, ":");
+            char* curso = strtok(NULL, "\n\r");
+
+            if (nome && nusp_str && curso) {
+                Node* novo_no = (Node*)malloc(sizeof(Node));
+                novo_no->novo.nome = strdup(nome);
+                novo_no->novo.nusp = atoi(nusp_str);
+                novo_no->novo.curso = strdup(curso);
+                novo_no->prox = NULL;
+
+                if (tabela->tabela[indice] == NULL) {
+                    tabela->tabela[indice] = novo_no;
+                } else {
+                    cauda->prox = novo_no;
+                }
+                cauda = novo_no;
             }
-
-            aluno = strtok(NULL, ",");
+            aluno_tok = strtok(NULL, ",");
         }
     }
 
-    fclose(arquivo); // Fecha o arquivo para garantir a atualização da memória
+    fclose(arquivo);
     return tabela;
 }
-Aluno* buscarHash(HashT* tabela, const char* nome) { //Funçaõ de busca, podendo ser indivdual ou de mais de um aluno
+
+
+// Busca um aluno pelo nome na tabela. Retorna um ponteiro constante se encontrado.
+const Aluno* buscarHash(HashT* tabela, const char* nome) {
     if (tabela == NULL || nome == NULL) {
-        return NULL; // Tratamento de erro
+        return NULL;
     }
 
-    int indice = funcaoHash(nome, tabela->tamanho); // Cálculo do índice usando função auxliar
+    int indice = funcaoHash(nome, tabela->tamanho);
     Node* atual = tabela->tabela[indice];
-
-    while (atual != NULL) {                        // Percorre a lista encadeade, haja vista que com o índice é possível encontrar o primeiro nó
-        if (strcmp(atual->novo.nome, nome) == 0) {
-            Aluno* copia = malloc(sizeof(Aluno));  // Faz uma cópia do aluno encontrado
-            copia->nome = strdup(atual->novo.nome);
-            copia->nusp = atual->novo.nusp;
-            copia->curso = strdup(atual->novo.curso);
-            return copia;   // Retorna a cópia alocada na memória
-        }
-        atual = atual->prox; // Avança para o próximo nó da lista encadeade
-    }
-
-    return NULL; // Não encontrado
-}
-
-int removerHash(HashT* tabela, const char* nome, const char* caminhoArquivo) { // Função para remover aluno, considerando a lista encadeada
-    if (!tabela || !nome || !caminhoArquivo) {
-        printf("Erro: Parametros invalidos para remocao.\n"); // Tratamento de erro inicial
-        return 0;
-    }
-
-    int indice = funcaoHash(nome, tabela->tamanho); // Cálculo do índice usando função auxiliar
-    Node* atual = tabela->tabela[indice];           // Ponteiros para lista encadeada, garantindo a remoção de apenas o aluno indicado e não do nó todo
-    Node* anterior = NULL;
-    int removido = 0;                               // Flag
 
     while (atual != NULL) {
         if (strcmp(atual->novo.nome, nome) == 0) {
-            // Encontrou o aluno a ser removido, remove o nó
-            if (anterior == NULL) {
-                // Caso 1: Remoção do primeiro nó
+            return &atual->novo;
+        }
+        atual = atual->prox;
+    }
+
+    return NULL;
+}
+
+// Remove um aluno da tabela, se encontrado.
+int removerHash(HashT* tabela, const char* nome) {
+    if (!tabela || !nome) {
+        return 0; // Retorna 0 em caso de falha ou parÃ¢metros invÃ¡lidos.
+    }
+
+    int indice = funcaoHash(nome, tabela->tamanho);
+    Node* atual = tabela->tabela[indice];
+    Node* anterior = NULL;
+
+    while (atual != NULL) {
+        if (strcmp(atual->novo.nome, nome) == 0) {
+            if (anterior == NULL) { // O nÃ³ a ser removido Ã© a cabeÃ§a da lista.
                 tabela->tabela[indice] = atual->prox;
             } else {
-                // Caso 2: Remoção de nó no meio/fim
                 anterior->prox = atual->prox;
             }
 
-            // Libera a memória do nó removido
             free(atual->novo.nome);
             free(atual->novo.curso);
             free(atual);
-            removido = 1;   // Flag para aluno removido
-            break;          // Define a saída do loop
+            
+            return 1; // Sucesso
         }
         anterior = atual;
         atual = atual->prox;
     }
 
-    if (removido) {
-        salvarHash(tabela, caminhoArquivo);  // Salva a tabela após o aluno ser encontrado
-    }
-
-    return removido;
+    return 0; // NÃ£o encontrado
 }
 
-
-
-HashT* criarHash(int tamanho, const char* caminho) {  // Função para inicializar a tabela
+// Aloca uma nova tabela hash, ajustando seu tamanho para o prÃ³ximo nÃºmero primo.
+HashT* criarHash(int tamanho, const char* caminho) {
     if (tamanho <= 0 || !caminho) {
-        printf("Erro: Parametros invalidos.\n"); // Tratamento de erro inical
         return NULL;
     }
 
     int tamanho_primo = tamanho;
     int eh_primo = 0;
-
-    while (!eh_primo) {  // Loop para verificar primo mais próximo e ajuste da tabela
+    while (!eh_primo) {
         eh_primo = 1;
-        for (int i = 2; i <= tamanho_primo / 2; i++) {
+        // ValidaÃ§Ã£o de primalidade (simples, mas funcional para o escopo).
+        for (int i = 2; i * i <= tamanho_primo; i++) {
             if (tamanho_primo % i == 0) {
                 eh_primo = 0;
+                tamanho_primo++;
                 break;
             }
         }
-        if (!eh_primo) tamanho_primo++;
     }
 
-    HashT* nova_tabela = (HashT*)malloc(sizeof(HashT));  // Alocação da tabela em memória
+    HashT* nova_tabela = (HashT*)malloc(sizeof(HashT));
     if (!nova_tabela) {
-        printf("Erro: Falha na alocação da tabela hash.\n");
         return NULL;
     }
 
     nova_tabela->tamanho = tamanho_primo;
-    nova_tabela->tabela = (Node**)calloc(tamanho_primo, sizeof(Node*));  // Alocação feita conforme struct HashT e Node
+    nova_tabela->tabela = (Node**)calloc(tamanho_primo, sizeof(Node*));
 
     if (!nova_tabela->tabela) {
-        printf("Erro: Falha na alocação do array de nós.\n");
         free(nova_tabela);
         return NULL;
     }
-
-    nova_tabela->caminho_arquivo = strdup(caminho);  // Guarda o caminho
+    
+    // Cria um arquivo vazio inicial para a nova tabela.
     salvarHash(nova_tabela, caminho);
-
-    printf("Tabela hash criada e salva em '%s' (tamanho: %d).\n", caminho, tamanho_primo); // Mensagem de sucesso e tabela inicializada
+    
     return nova_tabela;
 }
 
-int inserirHash(HashT* h, Aluno aluno, const char* caminhoArquivo) {
-    if (!h || !aluno.nome || !aluno.curso || !caminhoArquivo) {
-        printf("Erro: Parametros invalidos para insercao.\n");  // Tratamento de erro incial
+// Insere um aluno na tabela hash.
+int inserirHash(HashT* h, Aluno aluno) {
+    if (!h || !aluno.nome || !aluno.curso) {
         return 0;
     }
 
-    int indice = funcaoHash(aluno.nome, h->tamanho);  // Cálculo do íncide utilizando função auxiliar
-    Node* novo_no = (Node*)malloc(sizeof(Node));      // Alocação de memória
+    int indice = funcaoHash(aluno.nome, h->tamanho);
+    Node* novo_no = (Node*)malloc(sizeof(Node));
     if (!novo_no) {
-        printf("Erro: Falha na alocacao de memoria.\n");
         return 0;
     }
 
-    novo_no->novo.nome = strdup(aluno.nome); // Cópia dos dados
+    novo_no->novo.nome = strdup(aluno.nome);
     novo_no->novo.nusp = aluno.nusp;
     novo_no->novo.curso = strdup(aluno.curso);
     novo_no->prox = NULL;
-    novo_no->removido = 0;  // Novo campo: marcação de nó removido
 
-    // Caso 1: Posição vazia, considerandando a situação de lista encadeada
+    // Insere o novo nÃ³ no final da lista para manter a ordem.
     if (h->tabela[indice] == NULL) {
         h->tabela[indice] = novo_no;
-    }
-    // Caso 2: Procura por espaço vago (nó marcado como removido)
-    // Evita inserção fora de ordem
-    else {
+    } else {
         Node* atual = h->tabela[indice];
-        Node* anterior = NULL;
-        int inserido = 0;
-
-        while (atual != NULL) {
-            if (atual->removido) {
-                // Reutiliza espaço vago
-                free(atual->novo.nome);
-                free(atual->novo.curso);
-                *atual = *novo_no;  // Copia os dados
-                free(novo_no);
-                inserido = 1;
-                break;
-            }
-            anterior = atual;
+        while (atual->prox != NULL) {
             atual = atual->prox;
         }
-
-        // Caso 3: Sem espaços vagos, insere no final
-        if (!inserido) {
-            anterior->prox = novo_no;
-        }
+        atual->prox = novo_no;
     }
 
-    salvarHash(h, caminhoArquivo); // Salva a tabela hash após inserção bem sucedida
-    printf("Aluno '%s' inserido com sucesso no indice %d. Tabela salva em '%s'.\n",
-           aluno.nome, indice, caminhoArquivo);
     return 1;
 }
 
+// Libera toda a memÃ³ria alocada dinamicamente pela tabela hash.
 void liberarHash(HashT* h) {
     if (!h) return;
 
-    // Libera todos os nós da tabela (toda memória alocada)
     for (int i = 0; i < h->tamanho; i++) {
         Node* atual = h->tabela[i];
         while (atual != NULL) {
@@ -271,7 +264,6 @@ void liberarHash(HashT* h) {
         }
     }
 
-    // Libera o array de ponteiros e a estrutura principal
     free(h->tabela);
     free(h);
 }

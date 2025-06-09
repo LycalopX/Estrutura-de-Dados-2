@@ -3,42 +3,42 @@
 
 #include "aluno.h"  // Struct Aluno definida para a hash
 
-typedef struct node { // Struct para o nó
+typedef struct node { // Struct para o nÃ³
     Aluno novo;
     struct node* prox;
-    int removido;  // 0 = ativo, 1 = removido
 } Node;
 
-typedef struct hash { // Struct para a tabela hash (junção dos nós)
+typedef struct hash { // Struct para a tabela hash
     int tamanho;
     Node** tabela;
-    char* caminho_arquivo;  // Novo campo para guardar o caminho
 } HashT;
 
-// Funções obrigatórias
+// --- FunÃ§Ãµes Principais ---
 
-HashT* criarHash(int tamanho,const char* caminhoArquivo); // Cria uma tabela hash
+// Cria uma tabela hash com o tamanho mais prÃ³ximo a um nÃºmero primo.
+HashT* criarHash(int tamanho,const char* caminhoArquivo); 
 
-int inserirHash(HashT* h, Aluno aluno, const char* caminhoArquivo); // Insere aluno na tabela
+// Insere um aluno na tabela.
+int inserirHash(HashT* h, Aluno aluno); 
 
-Aluno* buscarHash(HashT* tabela, const char* nome); // Busca aluno pelo nome
+// Busca um aluno pelo nome e retorna um ponteiro constante para ele.
+const Aluno* buscarHash(HashT* tabela, const char* nome);
 
-int removerHash(HashT* tabela, const char* nome, const char* caminhoArquivo); // Remove Aluno da sua posição sem excluir o nó
+// Remove um aluno da tabela pelo nome.
+int removerHash(HashT* tabela, const char* nome); 
 
-void liberarHash(HashT* h); // Libera memória da tabela
+// Libera toda a memÃ³ria alocada para a tabela hash.
+void liberarHash(HashT* h); 
 
-// Funções auxiliares
+// --- FunÃ§Ãµes Auxiliares ---
 
-int Hash(const char* nome, int tamanhoTabela); // Função hash usada na inserção, busca e remoção
+// Calcula o Ã­ndice hash para um dado nome.
+int funcaoHash(const char* nome, int tamanhoTabela); 
 
-unsigned int rotacionar13Bits(unsigned int valor); // Rotação de bits (auxiliar da hash)
+// Salva o conteÃºdo da tabela hash em um arquivo.
+void salvarHash(HashT* h, const char* caminhoArquivo); 
 
-void salvarHash(HashT* h, const char* caminhoArquivo); // Salva a tabela em arquivo
-
-HashT* carregarHash(const char* caminhoArquivo); // Carrega tabela de arquivo
-
-// Funções de depuração
-
-void imprimirHash(HashT* h); // Imprime toda a tabela
+// Carrega uma tabela hash a partir de um arquivo.
+HashT* carregarHash(const char* caminhoArquivo); 
 
 #endif // HASH_H_INCLUDED
